@@ -1,0 +1,21 @@
+<% if @clients.length > 1 %>
+<table width="100%" class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Client</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @clients.each do |client| %>
+      <tr>
+        <td><%= client.full_name%></td>
+        <td><%= client.email %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+<h3>No Clients!</h3>
+<% end %>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ZenJobs</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="container-fluid flexcol">
+  <div>
+    <%= render 'layouts/navbar' %>
+  </div>
+  <% if user_signed_in? %>
+  <div class="flexcol">
+    <div class="row flexrow">
+      <div class="col-sm-3 flexrow">
+        <div id="dash-nav" class="well">
+          <%= render "layouts/dash_nav" %>
+        </div>
+      </div>
+      <div class="col-sm-9 flexrow">
+        <div id="dash-content" class="well">
+          <%= render 'layouts/notices' %>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% else %>
+  <div><%= yield %></div>
+  <% end %>
+</div>
+<%= render 'layouts/footer' %>
+
+
+</body>
+</html>

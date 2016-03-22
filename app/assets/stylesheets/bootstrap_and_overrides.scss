@@ -1,0 +1,91 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+$brand-primary: #04BFAD;
+$brand-blue: #023E73;
+$brand-success: #5cb85c;
+$brand-info:    #F2E205;
+$brand-warning: #F2CB05;
+$brand-danger:  #d9534f;
+$navbar-link: #ffffff;
+
+html {
+  height: 100%;
+}
+body {
+  min-height: 100vh;
+  display:flex;
+  flex-direction: column;
+}
+.flexcol {
+  flex: 1;
+  flex-direction: column;
+  display: flex;
+  justify-content: flex-start;
+  margin: 0;
+}
+.flexcol div:last-child {
+  flex: 1;
+}
+.flexrow {
+  display: flex;
+  flex-direction: row;
+  align-content: stretch;
+}
+.btn-primary {
+  background-color: $brand-primary;
+  border-color: $brand-primary;
+}
+.navbar-default .navbar-nav > li > a.btn-primary:hover, .navbar-default .navbar-nav > li > a.btn-primary:focus {
+  background-color: darken($brand-primary, 6.5%);
+  color: $navbar-link;
+}
+.navbar-default {
+  background-color: $brand-blue;
+}
+.navbar-default .navbar-nav > li > a {
+  color: $navbar-link;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: $brand-primary;
+}
+.navbar-default .navbar-nav .navbar-text {
+  color: $navbar-link;
+}
+.no-padding {
+  padding: 0;
+}
+textarea, input, select {
+ max-width: 400px;
+}
+
+#dash-nav {
+  li.list-group-item {
+    background: transparent;
+    border: none;
+  }
+  ul {
+    list-style: none;
+    padding:0;
+  }
+  ul li {
+    padding: 10px 0px;
+  }
+  .btn {
+    width: 100%;
+  }
+  hr {
+    border-color: $brand-primary;
+  }
+}
+
+footer {
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  min-height: 200px;
+  color: $navbar-link;
+  background-color: $brand-blue;
+  align-items: center;
+  margin-top: 20px;
+}

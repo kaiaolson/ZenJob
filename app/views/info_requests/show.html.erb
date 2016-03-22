@@ -1,0 +1,14 @@
+<h1>Info Request #<%= @info_request.id %></h1>
+
+<h3><%= @info_request.title %></h3>
+<p>Category: <%= @info_request.category_name %></p>
+<p>Description: <%= @info_request.description %></p>
+<p>Requirements: <%= @info_request.requirements %></p>
+<p>Client: <%= @info_request.client_name %></p>
+<p>Creator: <%= @info_request.creator %></p>
+<br>
+<p>Completed: <%= @info_request.completed %></p>
+
+<% if current_user.client? %>
+  <%= link_to "Create Submission", new_info_request_submission_path(@info_request), class: "btn btn-info" %>
+<% end %>

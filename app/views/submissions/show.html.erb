@@ -1,0 +1,27 @@
+<h1>Submission #<%= @submission.id %></h1>
+
+<% @submission.content.each do |key, value| %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= key.to_s.titleize %></h3>
+    </div>
+    <div class="panel-body">
+      <%= value %>
+      <% if key == :images %>
+        <% @submission.images.each do |image| %>
+        <div class="submission-image"><%= image_tag image.url %></div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<hr>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Notes</h3>
+  </div>
+  <div class="panel-body">
+    <%= @submission.notes %>
+  </div>
+</div>

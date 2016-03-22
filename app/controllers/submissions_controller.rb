@@ -1,0 +1,85 @@
+class SubmissionsController < ApplicationController
+  before_action :find_submission, only: [:show, :edit, :update, :destroy]
+  protect_from_forgery with: :null_session
+
+  def new
+    @submission = Submission.new(info_request_id: params[:info_request_id])
+  end
+
+  def create
+    @submission = Submission.new submission_params
+    @submission.info_request_id = params[:info_request_id]
+    @submission.user = current_user
+    if @submission.save
+      if params[:submission][:completed] == "1"
+        i = InfoRequest.find params[:info_request_id]
+        i.completed = true
+        i.save
+      end
+      redirect_to submission_path(@submission), notice: "Submission created!"
+    else
+      render :new, alert: "Submission not created!"
+    end
+  end
+
+  # def create
+  #   p params
+  #   @submission = Submission.new(images: params[:file])
+  #   if @submission.save
+  #     head :ok
+  #   else
+  #     render json: { errors: @submission.errors.full_messages }
+  #   end
+  # end
+
+  def show
+
+  end
+
+  def index
+    if current_user.consultant?
+      @submissions = Submission.consultant_submissions
+    else
+      if params[:filter] == "false"
+        @submissions = current_user.submissions.where(completed: "false")
+      elsif params[:filter] == "true"
+        @submissions = current_user.submissions.where(completed: "true")
+      else
+        @submissions = current_user.submissions.order(:id)
+      end
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @submission.update submission_params
+      if params[:submission][:completed] == "1"
+        i = InfoRequest.find params[:info_request_id]
+        i.completed = true
+        i.save
+      end
+      redirect_to info_request_submission_path(@submission.info_request_id, @submission), notice: "Submission updated!"
+    else
+      flash[:alert] = "Submission not updated!"
+      render :edit
+    end
+  end
+
+  def destroy
+    @submission.destroy
+    flash[:notice] = "Your submission was deleted!"
+    redirect_to submissions_path
+  end
+
+  private
+
+  def submission_params
+    params.require(:submission).permit(:notes, :completed, :user_id, :info_request_id, :text_content, :username, :email, {images: []}, {files: []})
+  end
+
+  def find_submission
+    @submission = Submission.find params[:id]
+  end
+end

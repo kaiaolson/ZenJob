@@ -1,0 +1,17 @@
+<%= simple_form_for [@submission.info_request, @submission] do |f| %>
+<%= f.input :info_request_id, as: :string, label: "Request ID", input_html: { value: @submission.info_request.id }, disabled: true %>
+  <% case @submission.request_category %>
+  <% when "File" %>
+    <%= render "fileform", f: f %>
+  <% when "Image" %>
+  <%= render "imageform", f: f %>
+  <% when "Login" %>
+  <%= render "loginform", f: f %>
+  <% when "Text" %>
+  <%= render "textform", f: f %>
+  <% end %>
+  <%= f.input :completed %>
+  <%= f.input :notes %>
+  <%= link_to "View Request", info_request_path(@submission.info_request_id), class: "btn btn-info" %>
+  <%= f.submit class: "btn btn-warning" %>
+<% end %>
