@@ -79,6 +79,15 @@ textarea, input, select {
   }
 }
 
+// Chat
+.zen-message {
+  background-color: #999;
+  border-radius: 10px;
+  box-shadow: inset 2px 2px 2px #888;
+  padding: 5px;
+  margin: 5px 0px;
+}
+
 footer {
   display:flex;
   flex-direction: row;
