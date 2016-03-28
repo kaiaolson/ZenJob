@@ -15,9 +15,12 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 
 gem 'rack-cors', :require => 'rack/cors'
+gem 'summernote-rails', github: "summernote/summernote-rails"
 gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootswatch-rails'
 gem 'cancancan'
 gem 'font-awesome-rails'
+gem 'material_icons'
 gem 'delayed_job_active_record'
 gem 'simple_form'
 gem 'rails-erd'
@@ -27,6 +30,9 @@ gem 'activeadmin', github: "activeadmin"
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'mini_magick'
 gem 'mailboxer'
+gem 'active_model_serializers'
+gem "fog"
+gem "fog-aws"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
