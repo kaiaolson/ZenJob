@@ -37,16 +37,12 @@ class SubmissionsController < ApplicationController
   end
 
   def index
-    if current_user.consultant?
-      @submissions = Submission.consultant_submissions
+    if params[:filter] == "false"
+      @submissions = current_user.submissions.where(completed: "false")
+    elsif params[:filter] == "true"
+      @submissions = current_user.submissions.where(completed: "true")
     else
-      if params[:filter] == "false"
-        @submissions = current_user.submissions.where(completed: "false")
-      elsif params[:filter] == "true"
-        @submissions = current_user.submissions.where(completed: "true")
-      else
-        @submissions = current_user.submissions.order(:id)
-      end
+      @submissions = current_user.submissions
     end
   end
 
@@ -76,7 +72,7 @@ class SubmissionsController < ApplicationController
   private
 
   def submission_params
-    params.require(:submission).permit(:notes, :completed, :user_id, :info_request_id, :text_content, :username, :email, {images: []}, {files: []})
+    params.require(:submission).permit(:notes, :completed, :user_id, :info_request_id, :text_content, :username, :email, {files: []}, :relationship_id)
   end
 
   def find_submission

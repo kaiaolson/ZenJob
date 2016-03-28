@@ -4,14 +4,20 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    if params[:consultant_id]
+      @consultant = User.find params[:consultant_id]
+      @consultant_id = @consultant.id
+    else
+      @consultant_id = nil
+    end
   end
 
   def create
     user = User.new user_params
     if user.save
+      Relationship.create(user_id: params[:user][:consultant].to_i, relation_id: user.id) if params[:user][:consultant]
       log_in(user)
-      flash[:notice] = "User created!"
-      user.role == "consultant" ? (redirect_to info_requests_path) : (redirect_to submissions_path)
+      redirect_to info_requests_path, notice: "Profile created successfully!"
     else
       flash[:alert] = "User not created, see errors!"
       redirect_to new_user_path
@@ -41,10 +47,9 @@ class UsersController < ApplicationController
     if can? :destroy, @user
       @user.destroy
       session[:user_id] = nil
-      flash[:notice] = "User deleted!"
-      redirect_to root_path
+      redirect_to root_path, notice: "User deleted!"
     else
-      redirect_to root_path
+      redirect_to root_path, notice: "User not deleted!"
     end
   end
 
