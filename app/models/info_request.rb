@@ -2,6 +2,7 @@ class InfoRequest < ActiveRecord::Base
   has_one :submission
   belongs_to :category
   belongs_to :user
+  belongs_to :relationship
 
   default_scope {order('completed ASC')}
 

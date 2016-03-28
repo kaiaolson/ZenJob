@@ -16,7 +16,9 @@ class SubmissionsController < ApplicationController
         i.completed = true
         i.save
       end
-      redirect_to submission_path(@submission), notice: "Submission created!"
+      consultant_id = Relationship.find(@submission.relationship_id).user_id
+      SubmissionsMailer.new_submission(consultant_id, current_user.id, @submission).deliver_later
+      redirect_to info_request_submission_path(@submission.info_request_id, @submission), notice: "Submission created!"
     else
       render :new, alert: "Submission not created!"
     end

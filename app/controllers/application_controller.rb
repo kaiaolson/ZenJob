@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_user
+    session[:return_to] ||= request.url
     redirect_to new_session_path, notice: "Please sign in." unless user_signed_in?
   end
 

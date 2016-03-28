@@ -1,0 +1,7 @@
+<p>Hello <%= @consultant.full_name %>,</p>
+
+<p><%= @client.full_name %> has created a submission for your request, "<%= @info_request.title %>".</p>
+
+<p><%= link_to "See the submission here.", info_request_submission_url(@info_request.id, @submission.id) %></p>
+
+<p>Have a good day!<br>- The Zen Jobs Team</p>

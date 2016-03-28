@@ -1,6 +1,7 @@
 class Submission < ActiveRecord::Base
   belongs_to :info_request
   belongs_to :user
+  belongs_to :relationship
 
   mount_uploaders :files, FileUploader
 
@@ -35,9 +36,9 @@ class Submission < ActiveRecord::Base
   def content
     case request_category
     when "File"
-      {files: "", notes: notes}
+      {files: files, notes: notes}
     when "Image"
-      {files: "", notes: notes}
+      {files: files, notes: notes}
     when "Login"
       {username: username, email: email, notes: notes}
     when "Text"
