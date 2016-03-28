@@ -1,28 +1,37 @@
 <% if @submissions.length >= 1 %>
-<table width="100%" class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Info Request</th>
-      <th>Created By</th>
-      <th>Submitted</th>
-      <th class="text-center">Actions</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @submissions.each do |submission| %>
+<div class="table-responsive">
+  <table width="100%" class="table table-bordered table-striped">
+    <thead>
       <tr>
-        <td><%= submission.id %></td>
-        <td><%= link_to submission.request_title, info_request_submission_path(submission.info_request_id, submission) %></td>
-        <td><%= submission.creator %></td>
-        <td><%= submission.completed %></td>
-        <td class="text-center"><%= link_to "Edit", edit_info_request_submission_path(submission.info_request_id, submission), class: "btn btn-warning" %>
-            <%= link_to "Delete", info_request_submission_path(submission.info_request_id, submission), method: :delete, data: {confirm: "Are you sure you want to delete this submission?"}, class: "btn btn-danger" %> </td>
+        <th>ID</th>
+        <th>Info Request</th>
+        <th>Created By</th>
+        <th class="text-center">Actions</th>
+        <th class="text-center">Submitted</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @submissions.each do |submission| %>
+        <tr>
+          <td><%= submission.id %></td>
+          <td><%= submission.request_title %></td>
+          <td><%= submission.creator %></td>
+          <td class="text-center flexrow-center btn-group">
+              <%= link_to "View", info_request_submission_path(submission.info_request_id, submission), class: "btn btn-primary btn-sm" %>
+              <%= link_to "Edit", edit_info_request_submission_path(submission.info_request_id, submission), class: "btn btn-warning btn-sm" %>
+              <%= link_to "Delete", info_request_submission_path(submission.info_request_id, submission), method: :delete, data: {confirm: "Are you sure you want to delete this submission?"}, class: "btn btn-danger btn-sm" %> </td>
+          <td class="text-center">
+            <% if submission.completed %>
+              <i class='material-icons'>check</i>
+            <% else %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 <% else %>
 <h3>No Submissions!</h3>
 <% end %>

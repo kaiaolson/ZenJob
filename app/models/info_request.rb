@@ -3,6 +3,8 @@ class InfoRequest < ActiveRecord::Base
   belongs_to :category
   belongs_to :user
 
+  default_scope {order('completed ASC')}
+
   validates :title, presence: true
   validates :relationship_id, presence: true
   validates :category_id, presence: true
@@ -19,5 +21,13 @@ class InfoRequest < ActiveRecord::Base
   def client_name
     relationship = Relationship.find relationship_id
     relationship.client_name
+  end
+
+  def content
+    {"Client": client_name,
+      "Consultant": creator,
+      "Category": category_name,
+      "Description": description,
+      "Requirements": requirements}
   end
 end

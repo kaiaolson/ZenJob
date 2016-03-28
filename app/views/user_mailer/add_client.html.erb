@@ -1,0 +1,10 @@
+<p>Hello <%= @client %>,</p>
+
+<p><%= @user %> has added you as a client on ZenJobs! Click the link below to
+  create your account.</p>
+
+<p><%= link_to "Sign up for ZenJobs", new_user_url({consultant_id: @user_id}) %></p>
+
+<p>If you recieved this email in error, please ignore.</p>
+
+<p>ZenJobs Team</p>

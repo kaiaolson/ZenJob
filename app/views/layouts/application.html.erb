@@ -7,32 +7,45 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="container-fluid flexcol">
-  <div>
-    <%= render 'layouts/navbar' %>
+<% if content_for? :home %>
+  <div class="container-fluid flexcol">
+    <div>
+      <%= render 'layouts/navbar' %>
+    </div>
   </div>
-  <% if user_signed_in? %>
-  <div class="flexcol">
-    <div class="row flexrow">
-      <div class="col-sm-3 flexrow">
-        <div id="dash-nav" class="well">
-          <%= render "layouts/dash_nav" %>
+  <%= yield :home %>
+  <%= render 'layouts/footer' %>
+<% else %>
+  <div class="container-fluid flexcol">
+    <div>
+      <%= render 'layouts/navbar' %>
+    </div>
+    <% if user_signed_in? %>
+    <% if content_for? :profile %>
+      <div class="col-sm-4 col-sm-offset-4"><%= yield :profile %></div>
+    <% else %>
+    <div id="page-content" class="flexcol">
+      <div class="row flexrow">
+        <div class="col-sm-3 flexrow">
+          <div id="dash-nav" class="well flexcol">
+            <%= render "layouts/dash_nav" %>
+          </div>
         </div>
-      </div>
-      <div class="col-sm-9 flexrow">
-        <div id="dash-content" class="well">
-          <%= render 'layouts/notices' %>
-          <%= yield %>
+        <div class="col-sm-9 flexrow">
+          <div id="dash-content" class="well flexcol">
+            <%= render 'layouts/notices' %>
+            <%= yield %>
+          </div>
         </div>
       </div>
     </div>
+    <% end %>
+    <% else %>
+    <div id="page-content"><%= yield %></div>
+    <% end %>
   </div>
-  <% else %>
-  <div><%= yield %></div>
-  <% end %>
-</div>
-<%= render 'layouts/footer' %>
-
+  <%= render 'layouts/footer' %>
+<% end %>
 
 </body>
 </html>
