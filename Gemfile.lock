@@ -26,9 +26,17 @@ GIT
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
 
+GIT
+  remote: git://github.com/summernote/summernote-rails.git
+  revision: dad465a23376d25d240f9c9956ac428df7239b84
+  specs:
+    summernote-rails (0.8.1.1)
+      railties (>= 3.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
+    CFPropertyList (2.3.2)
     actionmailer (4.2.5.1)
       actionpack (= 4.2.5.1)
       actionview (= 4.2.5.1)
@@ -48,6 +56,8 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    active_model_serializers (0.9.4)
+      activemodel (>= 3.2)
     activejob (4.2.5.1)
       activesupport (= 4.2.5.1)
       globalid (>= 0.3.0)
@@ -76,6 +86,8 @@ GEM
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    bootswatch-rails (3.3.5)
+      railties (>= 3.1)
     bourbon (4.2.6)
       sass (~> 3.4)
       thor (~> 0.19)
@@ -106,6 +118,7 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
     erubis (2.7.0)
+    excon (0.48.0)
     execjs (2.6.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
@@ -115,10 +128,122 @@ GEM
     faker (1.6.3)
       i18n (~> 0.5)
     ffi (1.9.10)
+    fission (0.5.0)
+      CFPropertyList (~> 2.2)
+    fog (1.37.0)
+      fog-aliyun (>= 0.1.0)
+      fog-atmos
+      fog-aws (>= 0.6.0)
+      fog-brightbox (~> 0.4)
+      fog-core (~> 1.32)
+      fog-dynect (~> 0.0.2)
+      fog-ecloud (~> 0.1)
+      fog-google (<= 0.1.0)
+      fog-json
+      fog-local
+      fog-powerdns (>= 0.1.1)
+      fog-profitbricks
+      fog-radosgw (>= 0.0.2)
+      fog-riakcs
+      fog-sakuracloud (>= 0.0.4)
+      fog-serverlove
+      fog-softlayer
+      fog-storm_on_demand
+      fog-terremark
+      fog-vmfusion
+      fog-voxel
+      fog-vsphere (>= 0.4.0)
+      fog-xenserver
+      fog-xml (~> 0.1.1)
+      ipaddress (~> 0.5)
+    fog-aliyun (0.1.0)
+      fog-core (~> 1.27)
+      fog-json (~> 1.0)
+      ipaddress (~> 0.8)
+      xml-simple (~> 1.1)
+    fog-atmos (0.1.0)
+      fog-core
+      fog-xml
+    fog-aws (0.9.2)
+      fog-core (~> 1.27)
+      fog-json (~> 1.0)
+      fog-xml (~> 0.1)
+      ipaddress (~> 0.8)
+    fog-brightbox (0.10.1)
+      fog-core (~> 1.22)
+      fog-json
+      inflecto (~> 0.0.2)
+    fog-core (1.36.0)
+      builder
+      excon (~> 0.45)
+      formatador (~> 0.2)
+    fog-dynect (0.0.3)
+      fog-core
+      fog-json
+      fog-xml
+    fog-ecloud (0.3.0)
+      fog-core
+      fog-xml
+    fog-google (0.1.0)
+      fog-core
+      fog-json
+      fog-xml
+    fog-json (1.0.2)
+      fog-core (~> 1.0)
+      multi_json (~> 1.10)
+    fog-local (0.3.0)
+      fog-core (~> 1.27)
+    fog-powerdns (0.1.1)
+      fog-core (~> 1.27)
+      fog-json (~> 1.0)
+      fog-xml (~> 0.1)
+    fog-profitbricks (0.0.5)
+      fog-core
+      fog-xml
+      nokogiri
+    fog-radosgw (0.0.5)
+      fog-core (>= 1.21.0)
+      fog-json
+      fog-xml (>= 0.0.1)
+    fog-riakcs (0.1.0)
+      fog-core
+      fog-json
+      fog-xml
+    fog-sakuracloud (1.7.5)
+      fog-core
+      fog-json
+    fog-serverlove (0.1.2)
+      fog-core
+      fog-json
+    fog-softlayer (1.1.0)
+      fog-core
+      fog-json
+    fog-storm_on_demand (0.1.1)
+      fog-core
+      fog-json
+    fog-terremark (0.1.0)
+      fog-core
+      fog-xml
+    fog-vmfusion (0.1.0)
+      fission
+      fog-core
+    fog-voxel (0.1.0)
+      fog-core
+      fog-xml
+    fog-vsphere (0.6.3)
+      fog-core
+      rbvmomi (~> 1.8)
+    fog-xenserver (0.2.3)
+      fog-core
+      fog-xml
+    fog-xml (0.1.2)
+      fog-core
+      nokogiri (~> 1.5, >= 1.5.11)
     font-awesome-rails (4.5.0.1)
       railties (>= 3.2, < 5.1)
     foreigner (1.7.4)
       activerecord (>= 3.0.0)
+    formatador (0.2.5)
     formtastic (3.1.3)
       actionpack (>= 3.2.13)
     formtastic_i18n (0.6.0)
@@ -129,6 +254,7 @@ GEM
       activesupport (>= 3.2, < 5)
     hirb (0.7.3)
     i18n (0.7.0)
+    inflecto (0.0.2)
     inherited_resources (1.6.0)
       actionpack (>= 3.2, < 5)
       has_scope (~> 0.6.0.rc)
@@ -136,6 +262,7 @@ GEM
       responders
     interactive_editor (0.0.10)
       spoon (>= 0.0.1)
+    ipaddress (0.8.3)
     jbuilder (2.4.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
@@ -157,6 +284,8 @@ GEM
       carrierwave (>= 0.5.8)
       foreigner (>= 0.9.1)
       rails (>= 3.2.0)
+    material_icons (2.2.0)
+      railties (>= 3.2)
     mime-types (2.99.1)
     mini_magick (4.4.0)
     mini_portile2 (2.0.0)
@@ -210,6 +339,10 @@ GEM
       activesupport (>= 3.0)
       i18n
       polyamorous (~> 1.2)
+    rbvmomi (1.8.2)
+      builder
+      nokogiri (>= 1.4.1)
+      trollop
     rdoc (4.2.2)
       json (~> 1.4)
     responders (2.1.1)
@@ -258,6 +391,7 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.2)
+    trollop (2.1.2)
     turbolinks (2.5.3)
       coffee-rails
     tzinfo (1.2.2)
@@ -272,15 +406,18 @@ GEM
       binding_of_caller (>= 0.7.2)
       railties (>= 4.0)
       sprockets-rails (>= 2.0, < 4.0)
+    xml-simple (1.1.5)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers
   activeadmin!
   awesome_print
   bcrypt (~> 3.1.7)
   bootstrap-sass (~> 3.3.6)
+  bootswatch-rails
   byebug
   cancancan
   carrierwave!
@@ -289,12 +426,15 @@ DEPENDENCIES
   devise
   factory_girl_rails
   faker
+  fog
+  fog-aws
   font-awesome-rails
   hirb
   interactive_editor
   jbuilder (~> 2.0)
   jquery-rails
   mailboxer
+  material_icons
   mini_magick
   pg (~> 0.15)
   quiet_assets
@@ -306,6 +446,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   simple_form
   spring
+  summernote-rails!
   turbolinks
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
