@@ -1,27 +1,32 @@
-<h1>Submission #<%= @submission.id %></h1>
+<div class="row flexrow show-header">
+  <div class="col-sm-9">
+    <h1>Submission for <%= @submission.request_title %></h1>
+  </div>
 
-<% @submission.content.each do |key, value| %>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title"><%= key.to_s.titleize %></h3>
-    </div>
-    <div class="panel-body">
-      <%= value %>
-      <% if key == :images %>
-        <% @submission.images.each do |image| %>
-        <div class="submission-image"><%= image_tag image.url %></div>
-        <% end %>
+  <div class="col-sm-3 text-right flexcol-center">
+    <div class="btn-group flexrow-center">
+      <% if can? :manage, @submission %>
+      <%= link_to "Edit", edit_info_request_submission_path(@submission.info_request_id, @submission), class: "btn btn-warning btn-sm" %>
+      <%= link_to "Delete", info_request_submission_path(@submission.info_request_id, @submission), method: :delete, data: {confirm: "Are you sure you want to delete this submission?"}, class: "btn btn-danger btn-sm" %>
       <% end %>
     </div>
   </div>
-<% end %>
-
-<hr>
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Notes</h3>
-  </div>
-  <div class="panel-body">
-    <%= @submission.notes %>
-  </div>
 </div>
+
+<% @submission.content.each do |key, value| %>
+  <% if !value.empty? %>
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= key.to_s.titleize %></h3>
+      </div>
+      <div class="panel-body">
+        <%= value %>
+        <% if key == :files %>
+          <% @submission.files.each do |file| %>
+          <div class="submission-image"><%= image_tag file.url %></div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

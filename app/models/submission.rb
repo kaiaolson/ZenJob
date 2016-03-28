@@ -2,14 +2,9 @@ class Submission < ActiveRecord::Base
   belongs_to :info_request
   belongs_to :user
 
-  mount_uploaders :images, ImageUploader
   mount_uploaders :files, FileUploader
 
   validates :info_request_id, uniqueness: {message: "You've already created a submission for this request."}
-
-  def self.pending_count
-    where(completed: false).count
-  end
 
   def self.consultant_submissions
     Submission.all.map do |submission|
@@ -32,16 +27,21 @@ class Submission < ActiveRecord::Base
     u.full_name
   end
 
+  def consultant
+    relationship = Relationship.find relationship_id
+    relationship.consultant_name
+  end
+
   def content
     case request_category
     when "File"
-      {files: files}
+      {files: "", notes: notes}
     when "Image"
-      {images: ""}
+      {files: "", notes: notes}
     when "Login"
-      {username: username, email: email}
+      {username: username, email: email, notes: notes}
     when "Text"
-      {text: text_content}
+      {text: text_content, notes: notes}
     end
   end
 

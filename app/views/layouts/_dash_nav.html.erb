@@ -14,6 +14,6 @@
     <li class="list-group-item"><%= link_to "All Requests", info_requests_path({filter: "all"})  %></li>
     <li class="list-group-item"><span class='badge'><%= current_user.pending_requests_count %></span><%= link_to "Pending Requests", info_requests_path({filter: "false"}) %></li>
     <li class="list-group-item"><%= link_to "All Submissions", submissions_path({filter: "all"})  %></li>
-    <li class="list-group-item"><span class='badge'><%= Submission.pending_count %></span><%= link_to "Pending Submissions", submissions_path({filter: "false"})  %></li>
+    <li class="list-group-item"><span class='badge'><%= current_user.pending_submissions_count %></span><%= link_to "Pending Submissions", submissions_path({filter: "false"})  %></li>
   <% end %>
   </ul>
