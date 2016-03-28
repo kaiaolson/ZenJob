@@ -1,12 +1,16 @@
+//Import bootstrap-sprockets
 @import "bootstrap-sprockets";
+
+// Import cerulean variables
+@import "bootswatch/flatly/variables";
+
+// Then bootstrap itself
 @import "bootstrap";
-$brand-primary: #04BFAD;
-$brand-blue: #023E73;
-$brand-success: #5cb85c;
-$brand-info:    #F2E205;
-$brand-warning: #F2CB05;
-$brand-danger:  #d9534f;
-$navbar-link: #ffffff;
+@import "summernote";
+
+// And finally bootswatch style itself
+@import "bootswatch/flatly/bootswatch";
+
 
 html {
   height: 100%;
@@ -15,6 +19,34 @@ body {
   min-height: 100vh;
   display:flex;
   flex-direction: column;
+}
+#home {
+  height: 100vh;
+  background-image: image-url("homesplash.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: scroll;
+}
+#home-cta {
+  padding-right:30px;
+}
+#home-cta h1 {
+  font-size: 4.5em;
+}
+#home-cta p {
+  font-size: 1.1em;
+  padding:20px 0px;
+}
+#homeslide {
+  list-style-type: none;
+  display:inline-block;
+  padding-left:0;
+}
+#homeslide li {
+  display:inline-block;
+}
+#page-content {
+  margin:20px 0px;
 }
 .flexcol {
   flex: 1;
@@ -26,37 +58,54 @@ body {
 .flexcol div:last-child {
   flex: 1;
 }
+.flexcol-center {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+}
+.flexcol-center div:last-child {
+  flex: none;
+}
 .flexrow {
   display: flex;
   flex-direction: row;
   align-content: stretch;
 }
-.btn-primary {
-  background-color: $brand-primary;
-  border-color: $brand-primary;
+.flexrow-center {
+  display: flex;
+  flex-direction: row;
 }
-.navbar-default .navbar-nav > li > a.btn-primary:hover, .navbar-default .navbar-nav > li > a.btn-primary:focus {
-  background-color: darken($brand-primary, 6.5%);
-  color: $navbar-link;
+.flexrow-center a {
+  flex: 1;
 }
-.navbar-default {
-  background-color: $brand-blue;
+.navbar {
+  border-radius: 0;
+  margin-bottom: 0;
 }
-.navbar-default .navbar-nav > li > a {
-  color: $navbar-link;
-}
-.navbar-default .navbar-nav > li > a:hover,
-.navbar-default .navbar-nav > li > a:focus {
-  color: $brand-primary;
-}
-.navbar-default .navbar-nav .navbar-text {
-  color: $navbar-link;
+.navbar-default .navbar-text {
+  color: white;
 }
 .no-padding {
   padding: 0;
 }
 textarea, input, select {
  max-width: 400px;
+}
+hr {
+  border-color: $brand-primary;
+}
+.well.flexcol {
+  margin-bottom:10px;
+}
+.show-header {
+  margin-bottom:20px;
+  margin-top:20px;
+}
+.show-header h1 {
+  margin:0;
+}
+.panel {
+  margin-bottom:0px;
 }
 
 #dash-nav {
@@ -74,9 +123,6 @@ textarea, input, select {
   .btn {
     width: 100%;
   }
-  hr {
-    border-color: $brand-primary;
-  }
 }
 
 // Chat
@@ -92,9 +138,38 @@ footer {
   display:flex;
   flex-direction: row;
   justify-content: center;
-  min-height: 200px;
-  color: $navbar-link;
-  background-color: $brand-blue;
+  min-height: 75px;
   align-items: center;
-  margin-top: 20px;
+  background-color: $brand-primary;
+  color: #ffffff;
+}
+
+@media (max-width: 1100px) {
+  #home-cta {
+    width:100%;
+    margin-left:0;
+    text-align: center;
+  }
+  .home {
+    background-color:rgba(255,255,255, 0.4);
+    height:100vh;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #home-cta h1 {
+    margin-top: 0px;
+    padding-top: 20px;
+  }
+}
+
+@media (max-width: 767px) {
+  #home-cta h1 {
+    font-size: 3em;
+  }
+  .flexrow {
+    display: flex;
+    flex-direction: column;
+    align-content: stretch;
+  }
 }
