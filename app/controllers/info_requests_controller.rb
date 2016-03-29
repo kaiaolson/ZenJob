@@ -1,5 +1,5 @@
 class InfoRequestsController < ApplicationController
-  before_action :authenticate_user
+  before_action :authenticate_user, only: [:show]
   before_action :find_info_request, only: [:show, :edit, :update]
 
   def new
@@ -10,6 +10,8 @@ class InfoRequestsController < ApplicationController
     @info_request = InfoRequest.new info_request_params
     @info_request.user = current_user
     if @info_request.save
+      client_id = Relationship.find(@info_request.relationship_id).relation_id
+      InfoRequestsMailer.new_request(current_user.id, client_id, @info_request).deliver_later
       redirect_to info_requests_path, notice: "Request created!"
     else
       render :new, alert: "Request not created!"
@@ -18,11 +20,11 @@ class InfoRequestsController < ApplicationController
 
   def index
     if params[:filter] == "false"
-      @info_requests = current_user.info_requests.where(completed: "false")
+      @info_requests = current_user.info_requests.where(completed: "false").page params[:page]
     elsif params[:filter] == "true"
-      @info_requests = current_user.info_requests.where(completed: "true")
+      @info_requests = current_user.info_requests.where(completed: "true").page params[:page]
     else
-      @info_requests = current_user.info_requests
+      @info_requests = current_user.info_requests.page params[:page]
     end
   end
 

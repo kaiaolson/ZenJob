@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   resources :info_requests do
     resources :submissions, only: [:new, :create, :show, :edit, :update, :destroy]
   end
-  resources :submissions, only: [:index, :show]
+  resources :submissions, only: [:index]
   resources :relationships, only: [:create, :destroy]
 
   resources :teams

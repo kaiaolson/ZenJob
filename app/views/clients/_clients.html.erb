@@ -1,4 +1,4 @@
-<% if @clients.length > 1 %>
+<% if @clients.length >= 1 %>
 <div class="table-responsive">
   <table width="100%" class="table table-bordered table-striped">
     <thead>
@@ -21,3 +21,5 @@
 <% else %>
 <h3>No Clients!</h3>
 <% end %>
+
+<div class="text-center"><%= paginate @clients, theme: 'bootstrap3' %></div>

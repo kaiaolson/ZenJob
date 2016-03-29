@@ -19,7 +19,18 @@
             <% if user_signed_in? %>
               <p class="navbar-text">Welcome <%= current_user.full_name %>!</p>
               <li><%= link_to raw("<i class='material-icons'>apps</i>"), info_requests_path %></li>
-              <li><%= link_to raw("<i class='material-icons'>notifications</i>"), info_requests_path %></li>
+              <!-- <li><%#= link_to raw("<i class='material-icons'>notifications</i>"), info_requests_path %></li> -->
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class='material-icons'>notifications</i></a>
+                <ul class="dropdown-menu">
+                  <% if notifications? %>
+                    <li><%= link_to raw("Pending Requests <span class='badge'>#{current_user.pending_requests_count}</span>"), info_requests_path({filter: "false"}) %></li>
+                    <li><%= link_to raw("Pending Submissions <span class='badge'>#{current_user.pending_submissions_count}</span>"), submissions_path({filter: "false"})  %></li>
+                  <% else %>
+                    <li><p>No New Notifications!</p></li>
+                  <% end %>
+                </ul>
+              </li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons">account_circle</i></a>
                 <ul class="dropdown-menu">
