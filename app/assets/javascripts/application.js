@@ -13,5 +13,26 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require summernote
 //= require turbolinks
 //= require_tree .
+
+var playNext = function(i) {
+  var elm = $("#homeslide li:eq(" + i + ")");
+  var next = i + 1;
+  if(next === 3){ next = 0; }
+  elm.fadeIn(1000).delay(2000).fadeOut(1000, function(){
+    playNext(next);
+  });
+};
+
+$(document).ready(function(){
+  $('[data-provider="summernote"]').each(function(){
+    $(this).summernote({
+      height: 300
+    });
+    $(this).code();
+  });
+  $("#homeslide li").hide();
+  playNext(0);
+});

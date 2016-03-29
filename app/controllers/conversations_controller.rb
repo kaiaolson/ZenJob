@@ -1,5 +1,5 @@
 class ConversationsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user
   helper_method :mailbox, :conversation
 
   def create
@@ -7,7 +7,7 @@ class ConversationsController < ApplicationController
     recipients = User.where(email: recipient_emails).all
 
     conversation = current_user.
-      send_message(recipients, *conversation_params(:body, :subject)).conversation
+      send_message(recipients, *conversation_params(:body, :subject)).conversation.notify_all
 
     redirect_to conversation_path(conversation)
   end
