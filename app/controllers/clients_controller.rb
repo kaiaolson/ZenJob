@@ -21,7 +21,7 @@ class ClientsController < ApplicationController
   end
 
   def index
-    @clients = current_user.clients
+    @clients = current_user.clients.page params[:page]
   end
 
   def destroy

@@ -20,11 +20,11 @@ class InfoRequestsController < ApplicationController
 
   def index
     if params[:filter] == "false"
-      @info_requests = current_user.info_requests.where(completed: "false")
+      @info_requests = current_user.info_requests.where(completed: "false").page params[:page]
     elsif params[:filter] == "true"
-      @info_requests = current_user.info_requests.where(completed: "true")
+      @info_requests = current_user.info_requests.where(completed: "true").page params[:page]
     else
-      @info_requests = current_user.info_requests
+      @info_requests = current_user.info_requests.page params[:page]
     end
   end
 

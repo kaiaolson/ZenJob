@@ -40,11 +40,11 @@ class SubmissionsController < ApplicationController
 
   def index
     if params[:filter] == "false"
-      @submissions = current_user.submissions.where(completed: "false")
+      @submissions = current_user.submissions.where(completed: "false").page params[:page]
     elsif params[:filter] == "true"
-      @submissions = current_user.submissions.where(completed: "true")
+      @submissions = current_user.submissions.where(completed: "true").page params[:page]
     else
-      @submissions = current_user.submissions
+      @submissions = current_user.submissions.page params[:page]
     end
   end
 

@@ -433,6 +433,7 @@ DEPENDENCIES
   interactive_editor
   jbuilder (~> 2.0)
   jquery-rails
+  kaminari
   mailboxer
   material_icons
   mini_magick

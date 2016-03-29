@@ -2,6 +2,7 @@ class Submission < ActiveRecord::Base
   belongs_to :info_request
   belongs_to :user
   belongs_to :relationship
+  paginates_per 10
 
   mount_uploaders :files, FileUploader
 

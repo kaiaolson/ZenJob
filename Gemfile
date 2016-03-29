@@ -33,6 +33,7 @@ gem 'mailboxer'
 gem 'active_model_serializers'
 gem "fog"
 gem "fog-aws"
+gem 'kaminari'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
