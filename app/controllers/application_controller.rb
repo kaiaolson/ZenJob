@@ -20,6 +20,11 @@ class ApplicationController < ActionController::Base
     redirect_to new_session_path, notice: "Please sign in." unless user_signed_in?
   end
 
+  def notifications?
+    current_user.pending_requests_count > 0 || current_user.pending_submissions_count > 0
+  end
+
   helper_method :user_signed_in?
   helper_method :current_user
+  helper_method :notifications?
 end
