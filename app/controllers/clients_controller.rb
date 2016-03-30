@@ -21,7 +21,13 @@ class ClientsController < ApplicationController
   end
 
   def index
-    @clients = current_user.clients
+    if params[:filter] == "active"
+      @clients = current_user.active_clients
+    elsif params[:filter] == "archive"
+      @clients = current_user.archived_clients
+    else
+      @clients = current_user.clients
+    end
   end
 
   def destroy
