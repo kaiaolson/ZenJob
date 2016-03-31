@@ -54,6 +54,7 @@ Rails.application.routes.draw do
         post "sign_in" => "users#sign_in", on: :collection
         delete "sign_out" => "users#sign_out", on: :collection
       end
+      resources :submissions, only: [:index, :create]
     end
   end
 end
