@@ -24,6 +24,10 @@ class ClientsController < ApplicationController
     @clients = current_user.clients
   end
 
+  def update
+    
+  end
+
   def destroy
 
   end

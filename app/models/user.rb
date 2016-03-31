@@ -31,6 +31,11 @@ class User < ActiveRecord::Base
     #return nil
   end
 
+  def client_status(current_user)
+    r = current_user.relationships.find_by_relation_id(self.id)
+    r.aasm_state.titleize
+  end
+
   def client_names
     clients.map do |client|
       client.full_name
