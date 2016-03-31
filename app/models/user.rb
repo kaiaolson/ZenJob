@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
   acts_as_messageable
+  before_create :generate_api_key
 
   has_many :info_requests
   has_many :submissions
@@ -69,5 +70,14 @@ class User < ActiveRecord::Base
     begin
       self[column] = SecureRandom.urlsafe_base64
     end while User.exists?(column => self[column])
+  end
+
+  private
+
+  def generate_api_key
+    self.api_key = SecureRandom.hex(32)
+    while User.exists?(api_key: self.api_key)
+      self.api_key = SecureRandom.hex(32)
+    end
   end
 end

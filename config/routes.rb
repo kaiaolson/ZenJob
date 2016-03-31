@@ -41,4 +41,13 @@ Rails.application.routes.draw do
       post :untrash
     end
   end
+
+  namespace :api, defaults: {format: :json} do
+    namespace :v1 do
+      resources :users, only: [:index] do
+        post "sign_in" => "users#sign_in", on: :collection
+        delete "sign_out" => "users#sign_out", on: :collection
+      end
+    end
+  end
 end
