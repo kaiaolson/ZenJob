@@ -1,0 +1,23 @@
+<% content_for :home do %>
+<div id="home">
+  <div class="home">
+  <div id="home-cta" class="col-sm-4 col-sm-offset-8 text-right">
+    <h1>Are you a
+      <ul id="homeslide">
+        <li>
+          freelancer
+        </li>
+        <li>
+          consultant
+        </li>
+        <li>
+          contractor
+        </li>
+      </ul>
+    looking to simplify your life?</h1>
+    <p class="lead">ZenJobs helps you get the information you need from your clients quickly and efficiently, so you can get back to doing what you do best.</p>
+    <%= link_to "Sign Up Today", new_user_path, class: "btn btn-success btn-lg" %>
+  </div>
+</div>
+</div>
+<% end %>

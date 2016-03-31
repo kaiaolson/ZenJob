@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322195502) do
+ActiveRecord::Schema.define(version: 20160325164449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -158,7 +158,6 @@ ActiveRecord::Schema.define(version: 20160322195502) do
     t.text     "text_content"
     t.string   "username"
     t.string   "email"
-    t.string   "images",                                       array: true
     t.string   "files",                                        array: true
     t.integer  "relationship_id"
   end

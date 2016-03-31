@@ -16,7 +16,9 @@ class SubmissionsController < ApplicationController
         i.completed = true
         i.save
       end
-      redirect_to submission_path(@submission), notice: "Submission created!"
+      consultant_id = Relationship.find(@submission.relationship_id).user_id
+      SubmissionsMailer.new_submission(consultant_id, current_user.id, @submission).deliver_later
+      redirect_to info_request_submission_path(@submission.info_request_id, @submission), notice: "Submission created!"
     else
       render :new, alert: "Submission not created!"
     end
@@ -38,11 +40,11 @@ class SubmissionsController < ApplicationController
 
   def index
     if params[:filter] == "false"
-      @submissions = current_user.submissions.where(completed: "false")
+      @submissions = current_user.submissions.where(completed: "false").page params[:page]
     elsif params[:filter] == "true"
-      @submissions = current_user.submissions.where(completed: "true")
+      @submissions = current_user.submissions.where(completed: "true").page params[:page]
     else
-      @submissions = current_user.submissions
+      @submissions = current_user.submissions.page params[:page]
     end
   end
 
