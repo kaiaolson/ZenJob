@@ -19,16 +19,27 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true,
             format:  /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 
+
+
   def full_name
-    "#{first_name} #{last_name}"
+    "#{first_name} #{last_name}".titleize
   end
 
   def mailboxer_email(object)
-    #Check if an email should be sent for that object
-    #if true
     email
-    #if false
-    #return nil
+  end
+
+  def active_clients
+    relationships.active_relationships
+  end
+
+  def archived_clients
+    relationships.archived_relationships
+  end
+
+  def client_status(current_user)
+    r = current_user.relationships.find_by_relation_id(self.id)
+    r.aasm_state.titleize
   end
 
   def client_names

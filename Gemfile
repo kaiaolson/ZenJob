@@ -34,6 +34,7 @@ gem 'active_model_serializers'
 gem "fog"
 gem "fog-aws"
 gem 'kaminari'
+gem "aasm"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
