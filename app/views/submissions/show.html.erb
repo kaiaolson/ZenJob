@@ -20,11 +20,12 @@
         <h3 class="panel-title"><%= key.to_s.titleize %></h3>
       </div>
       <div class="panel-body">
-        <%= value %>
         <% if key == :files %>
           <% @submission.files.each do |file| %>
           <div class="submission-image"><%= image_tag file.url %></div>
           <% end %>
+        <% else %>
+          <%= value %>
         <% end %>
       </div>
     </div>

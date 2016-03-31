@@ -20,6 +20,11 @@ body {
   display:flex;
   flex-direction: column;
 }
+ul.dropdown-menu li p {
+  padding: 3px 20px;
+  color: #7b8a8b;
+  white-space: nowrap;
+}
 #home {
   height: 100vh;
   background-image: image-url("homesplash.jpg");
@@ -103,9 +108,6 @@ hr {
 }
 .show-header h1 {
   margin:0;
-}
-.panel {
-  margin-bottom:0px;
 }
 
 #dash-nav {

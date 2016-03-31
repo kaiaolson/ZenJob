@@ -19,16 +19,27 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true,
             format:  /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 
+
+
   def full_name
-    "#{first_name} #{last_name}"
+    "#{first_name} #{last_name}".titleize
   end
 
   def mailboxer_email(object)
-    #Check if an email should be sent for that object
-    #if true
     email
-    #if false
-    #return nil
+  end
+
+  def active_clients
+    relationships.active_relationships
+  end
+
+  def archived_clients
+    relationships.archived_relationships
+  end
+
+  def client_status(current_user)
+    r = current_user.relationships.find_by_relation_id(self.id)
+    r.aasm_state.titleize
   end
 
   def client_status(current_user)
@@ -43,17 +54,16 @@ class User < ActiveRecord::Base
   end
 
   def consultant?
-    role == "consultant"
+    role.downcase == "consultant" if role
   end
 
   def client?
-    role == "client"
+    role.downcase == "client" if role
   end
 
   def info_requests
     if client?
-      r = Relationship.where(relation: self)
-      InfoRequest.where(relationship_id: r.first.id).order(:id) unless r.first.nil?
+      InfoRequest.includes(:relationship).where(relationships: {relation_id: self.id})
     else
       InfoRequest.where(user_id: self).order(:id)
     end
@@ -61,8 +71,7 @@ class User < ActiveRecord::Base
 
   def submissions
     if consultant?
-      r = Relationship.where(user: self)
-      Submission.where(relationship_id: r.first.id).order(:id) unless r.first.nil?
+      Submission.includes(:relationship).where(relationships: {user_id: self.id})
     else
       Submission.where(user_id: self).order(:id)
     end

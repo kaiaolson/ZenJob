@@ -6,9 +6,9 @@
     <li class="list-group-item"><span class='badge'><%= current_user.pending_requests_count %></span><%= link_to "Pending Requests", info_requests_path({filter: "false"}) %></li>
     <hr>
     <li class="list-group-item"><%= link_to "Add New Client", new_client_path, class: "btn btn-primary" %></li>
-    <li class="list-group-item"><%= link_to "All Clients", clients_path %></li>
-    <li class="list-group-item"><%= link_to "Active Clients", clients_path %></li>
-    <li class="list-group-item"><%= link_to "Archived Clients", clients_path %></li>
+    <li class="list-group-item"><%= link_to "All Clients", clients_path({filter: "all"}) %></li>
+    <li class="list-group-item"><%= link_to "Active Clients", clients_path({filter: "active"}) %></li>
+    <li class="list-group-item"><%= link_to "Archived Clients", clients_path({filter: "archive"}) %></li>
     <li class="list-group-item"><%= link_to "View Submissions", submissions_path %></li>
   <% else %>
     <li class="list-group-item"><%= link_to "All Requests", info_requests_path({filter: "all"})  %></li>

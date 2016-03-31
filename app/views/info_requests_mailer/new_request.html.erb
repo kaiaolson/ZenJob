@@ -1,0 +1,14 @@
+<p>Hello <%= @client.full_name %>,</p>
+
+<p><%= @consultant.full_name %> has submitted a request for information
+  on ZenJobs.</p>
+
+<p><%= link_to "See the request here.", info_request_url(@info_request.id) %></p>
+
+<p>
+  Have a good day!
+</p>
+
+<p>
+  - The Zen Jobs Team
+</p>

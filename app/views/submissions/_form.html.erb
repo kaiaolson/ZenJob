@@ -1,6 +1,6 @@
 <%= simple_form_for [@submission.info_request, @submission] do |f| %>
   <%= f.input :info_request_id, as: :string, label: "Request ID", input_html: { value: @submission.info_request.id }, disabled: true %>
-  <%= f.input :relationship_id, as: :string, label: "Consultant", input_html: { value: @submission.info_request.relationship_id }, as: :hidden %>
+  <%= f.input :relationship_id, label: "Consultant", input_html: { value: @submission.info_request.relationship_id }, as: :hidden %>
   <% case @submission.request_category %>
   <% when "File" %>
     <%= render "fileform", f: f %>
