@@ -1,14 +1,26 @@
-<h1>Conversations</h1>
-<h2>Inbox</h2>
-<div id="inbox">
-  <%= render collection: mailbox.inbox, partial: 'conversation' %>
+<div>
+  <div class="col-sm-6">
+    <h1>Conversations</h1>
+  </div>
+  <div class="col-sm-6 text-right">
+    <h1><%= link_to 'New Conversation', :new_conversation, class: "btn btn-primary" %></h1>
+  </div>
+  <div class="col-sm-12">
+    <h2>Inbox</h2>
+    <div id="inbox">
+      <%= render collection: mailbox.inbox, partial: 'conversation' %>
+    </div>
+  </div>
+  <div class="col-sm-12">
+    <h2>Sent</h2>
+    <div id="sent">
+      <%= render collection: mailbox.sentbox, partial: 'conversation' %>
+    </div>
+  </div>
+  <div class="col-sm-12">
+    <h2>Trash</h2>
+    <div id="trash">
+      <%= render collection: mailbox.trash, partial: 'conversation' %>
+    </div>
+  </div>
 </div>
-<h2>Sent</h2>
-<div id="sent">
-  <%= render collection: mailbox.sentbox, partial: 'conversation' %>
-</div>
-<h2>Trash</h2>
-<div id="trash">
-  <%= render collection: mailbox.trash, partial: 'conversation' %>
-</div>
-<%= link_to 'Start Conversation', :new_conversation, class: "btn btn-primary" %>
