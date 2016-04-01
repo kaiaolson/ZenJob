@@ -6,7 +6,7 @@ class Api::V1::SubmissionsController < Api::BaseController
   end
 
   def create
-    byebug
-    head :ok
+    # params = params.require(:document).permit(:type_id, :user_id, :related_to_type, :related_to_id)
+    render json: params
   end
 end
