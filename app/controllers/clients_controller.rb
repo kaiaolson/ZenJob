@@ -8,10 +8,10 @@ class ClientsController < ApplicationController
     if client
       @relationship = current_user.relationships.build(relation_id: client.id)
       if @relationship.save
-        redirect_to info_requests_path, notice: "Added #{client_name} to your client list!"
+        redirect_to clients_path, notice: "Added #{client_name} to your client list!"
       else
         flash[:error] = "Unable to add #{client_name}, please see errors."
-        redirect_to info_requests_path
+        redirect_to new_client_path
       end
     else
       # send mailer asking to sign up
