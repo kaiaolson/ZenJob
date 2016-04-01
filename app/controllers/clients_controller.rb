@@ -22,16 +22,18 @@ class ClientsController < ApplicationController
 
   def index
     if params[:filter] == "active"
-      @clients = current_user.active_clients
+      @clients = current_user.active_clients.page params[:page]
     elsif params[:filter] == "archive"
-      @clients = current_user.archived_clients
+      @clients = current_user.archived_clients.page params[:page]
     else
-      @clients = current_user.clients
+      @clients = current_user.clients.page params[:page]
     end
   end
 
   def update
-    
+    r = current_user.relationships.find_by_relation_id params[:client_id]
+    r.archive!
+    redirect_to clients_path, notice: "Client archived!"
   end
 
   def destroy

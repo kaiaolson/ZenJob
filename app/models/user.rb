@@ -34,12 +34,8 @@ class User < ActiveRecord::Base
   end
 
   def archived_clients
-    relationships.archived_relationships
-  end
-
-  def client_status(current_user)
-    r = current_user.relationships.find_by_relation_id(self.id)
-    r.aasm_state.titleize
+    relationships.active_relationships
+    # User.includes(:relationships).where(relationships: {aasm_state: "archived", user_id: self.id})
   end
 
   def client_status(current_user)
