@@ -1,6 +1,6 @@
 class InfoRequestsController < ApplicationController
-  before_action :authenticate_user
-  before_action :find_info_request, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user, only: [:show]
+  before_action :find_info_request, only: [:show, :edit, :update]
 
   def new
     @info_request = InfoRequest.new
@@ -10,6 +10,8 @@ class InfoRequestsController < ApplicationController
     @info_request = InfoRequest.new info_request_params
     @info_request.user = current_user
     if @info_request.save
+      client_id = Relationship.find(@info_request.relationship_id).relation_id
+      InfoRequestsMailer.new_request(current_user.id, client_id, @info_request).deliver_later
       redirect_to info_requests_path, notice: "Request created!"
     else
       render :new, alert: "Request not created!"
@@ -17,22 +19,12 @@ class InfoRequestsController < ApplicationController
   end
 
   def index
-    if current_user.consultant?
-      if params[:filter] == "false"
-        @info_requests = current_user.info_requests.where(completed: "false").order(:id)
-      elsif params[:filter] == "true"
-        @info_requests = current_user.info_requests.where(completed: "true").order(:id)
-      else
-        @info_requests = current_user.info_requests.order(:id)
-      end
+    if params[:filter] == "false"
+      @info_requests = current_user.info_requests.where(completed: "false").page params[:page]
+    elsif params[:filter] == "true"
+      @info_requests = current_user.info_requests.where(completed: "true").page params[:page]
     else
-      if params[:filter] == "false"
-        @info_requests = User.info_requests(@current_user).where(completed: "false")
-      elsif params[:filter] == "true"
-        @info_requests = User.info_requests(@current_user).where(completed: "true")
-      else
-        @info_requests = User.info_requests(@current_user).order(:id)
-      end
+      @info_requests = current_user.info_requests.page params[:page]
     end
   end
 
@@ -43,9 +35,21 @@ class InfoRequestsController < ApplicationController
   end
 
   def update
+    respond_to do |format|
+      if @info_request.update info_request_params
+        format.html { redirect_to @info_request, notice: "Request updated!"}
+        format.js   { render :toggle_success }
+      else
+        format.html { render :edit, alert: "Unable to update request. Please check errors."}
+        format.js   { render :toggle_failure }
+      end
+    end
   end
 
   def destroy
+    @info_request = current_user.info_requests.find params[:id]
+    @info_request.destroy
+    redirect_to info_requests_path, notice: "Request deleted!"
   end
 
   private

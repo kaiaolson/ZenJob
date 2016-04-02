@@ -1,11 +1,12 @@
 class User < ActiveRecord::Base
   has_secure_password
   acts_as_messageable
+  before_create :generate_api_key
 
   has_many :info_requests
   has_many :submissions
 
-  has_many :relationships
+  has_many :relationships, dependent: :destroy
   has_many :clients, through: :relationships, source: :relation
   has_many :inverse_relationships, class_name: "Relationship", foreign_key: "relation_id"
   has_many :consultants, through: :inverse_relationships, source: :user
@@ -38,24 +39,35 @@ class User < ActiveRecord::Base
   end
 
   def consultant?
-    role == "consultant"
+    role.downcase == "consultant" if role
   end
 
   def client?
-    role == "client"
+    role.downcase == "client" if role
   end
 
-  def self.info_requests(user)
-    r = Relationship.where(relation: user)
-    InfoRequest.where(relationship_id: r.first.id).order(:id) unless r.first.nil?
+  def info_requests
+    if client?
+      InfoRequest.includes(:relationship).where(relationships: {relation_id: self.id})
+    else
+      InfoRequest.where(user_id: self).order(:id)
+    end
+  end
+
+  def submissions
+    if consultant?
+      Submission.includes(:relationship).where(relationships: {user_id: self.id})
+    else
+      Submission.where(user_id: self).order(:id)
+    end
   end
 
   def pending_requests_count
-    if consultant?
-      info_requests.where(completed: false).count
-    else
-      User.info_requests(self) ? (User.info_requests(self).where(completed: false).count) : 0
-    end
+    info_requests.where(completed: false).count
+  end
+
+  def pending_submissions_count
+    submissions.where(completed: false).count
   end
 
   def send_password_reset
@@ -69,5 +81,14 @@ class User < ActiveRecord::Base
     begin
       self[column] = SecureRandom.urlsafe_base64
     end while User.exists?(column => self[column])
+  end
+
+  private
+
+  def generate_api_key
+    self.api_key = SecureRandom.hex(32)
+    while User.exists?(api_key: self.api_key)
+      self.api_key = SecureRandom.hex(32)
+    end
   end
 end

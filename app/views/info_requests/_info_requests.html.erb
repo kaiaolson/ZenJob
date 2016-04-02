@@ -1,42 +1,58 @@
 <% if @info_requests.length >= 1 %>
-<table width="100%" class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th width="25%">Title</th>
-      <th>Category</th>
-      <th>Completed</th>
-      <% if current_user.consultant? %>
-        <th>Client</th>
-      <% else %>
-        <th>Consultant</th>
-      <% end %>
-      <th class="text-center">Actions</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @info_requests.each do |info_request| %>
+<div class="table-responsive">
+  <table width="100%" class="table table-bordered table-striped">
+    <thead>
       <tr>
-        <td><%= info_request.id %></td>
-        <td><%= info_request.title %></td>
-        <td><%= info_request.category_name %></td>
-        <td><%= info_request.completed? %></td>
+        <th>ID</th>
+        <th width="25%">Title</th>
+        <th class="text-center">Category</th>
         <% if current_user.consultant? %>
-        <td><%= info_request.client_name %></td>
-        <td class="text-center">
-            <%= link_to "View", info_request_path(info_request), class: "btn btn-info" %>
-            <%= link_to "Edit", edit_info_request_path(info_request), class: "btn btn-warning" %>
-            <%= link_to "Delete", info_request_path(info_request), method: :delete, data: {confirm: "Are you sure you want to delete this submission?"}, class: "btn btn-danger" %> </td>
+          <th>Client</th>
         <% else %>
-        <td><%= info_request.creator %></td>
-        <td class="text-center"><%= link_to "View", info_request_path(info_request), class: "btn btn-primary" %>
-            <%= link_to "Create Submission", new_info_request_submission_path(info_request), class: "btn btn-info" %> </td>
+          <th>Consultant</th>
         <% end %>
+        <th class="text-center">Actions</th>
+        <th class="text-center">Completed</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @info_requests.each do |info_request| %>
+        <tr>
+          <td><%= info_request.id %></td>
+          <td><%= info_request.title %></td>
+          <td class="text-center"><%= render "category", info_request: info_request %></td>
+          <% if current_user.consultant? %>
+          <td><%= info_request.client_name %></td>
+          <td class="text-center flexrow-center btn-group">
+              <%= link_to "View", info_request_path(info_request), class: "btn btn-primary btn-sm" %>
+              <%= link_to "Edit", edit_info_request_path(info_request), class: "btn btn-warning btn-sm" %>
+              <%= link_to "Delete", info_request_path(info_request), method: :delete, data: {confirm: "Are you sure you want to delete this submission?"}, class: "btn btn-danger btn-sm" %> </td>
+          <% else %>
+          <td><%= info_request.creator %></td>
+          <td class="text-center flexrow-center btn-group"><%= link_to "View", info_request_path(info_request), class: "btn btn-primary btn-sm" %>
+              <% if info_request.submission %>
+                <%= link_to "Edit Submission", edit_info_request_submission_path(info_request, info_request.submission), class: "btn btn-warning btn-sm" %> </td>
+              <% else %>
+                <%= link_to "Create Submission", new_info_request_submission_path(info_request), class: "btn btn-success btn-sm" %> </td>
+              <% end %>
+          <% end %>
+          <td class="text-center">
+            <!-- <div id="<%#= dom_id(info_request) %>_completed" style="display:inline;"> -->
+              <%#= render "toggle_completed", info_request: info_request %>
+            <!-- </div> -->
+            <% if info_request.completed %>
+              <i class='material-icons'>check</i>
+            <% else %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 <% else %>
 <h3>No Requests!</h3>
 <% end %>
+
+<div class="text-center"><%= paginate @info_requests, theme: 'bootstrap3' %></div>

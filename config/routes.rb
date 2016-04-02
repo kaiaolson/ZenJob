@@ -5,10 +5,6 @@ Rails.application.routes.draw do
 
   # custom actions for the welcome controller
   get "/home" => "welcome#home"
-  get "/demo" => "welcome#demo"
-  get "/features" => "welcome#features"
-  get "/pricing" => "welcome#pricing"
-
 
   resources :sessions, only: [:new, :create] do
     delete :destroy, on: :collection
@@ -23,7 +19,7 @@ Rails.application.routes.draw do
   resources :info_requests do
     resources :submissions, only: [:new, :create, :show, :edit, :update, :destroy]
   end
-  resources :submissions, only: [:index, :show]
+  resources :submissions, only: [:index]
   resources :relationships, only: [:create, :destroy]
 
   resources :teams
@@ -34,11 +30,31 @@ Rails.application.routes.draw do
   resources :consultant_requests, only: [:index]
   resources :consultant_submissions, only: [:index]
 
+  namespace :api, defaults: {format: :json} do
+    namespace :v1 do
+      resources :info_requests, only: [:index, :show] do
+        resources :submissions, only: [] do
+          post :update, on: :collection
+        end
+      end
+    end
+  end
+
   resources :conversations, only: [:index, :show, :new, :create] do
     member do
       post :reply
       post :trash
       post :untrash
+    end
+  end
+
+  namespace :api, defaults: {format: :json} do
+    namespace :v1 do
+      resources :users, only: [:index] do
+        post "sign_in" => "users#sign_in", on: :collection
+        delete "sign_out" => "users#sign_out", on: :collection
+      end
+      resources :submissions, only: [:index, :create]
     end
   end
 end

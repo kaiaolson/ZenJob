@@ -1,0 +1,9 @@
+<h1 class="text-center"><%= conversation.subject.titleize %></h1>
+<%= content_tag_for(:div, conversation.receipts_for(current_user), class: "zen-message") do |receipt| %>
+  <% message = receipt.message %>
+  <p>
+    <%= message.body %>
+  </p>
+<% end %>
+
+<%= render 'messages/form', conversation: conversation %>
