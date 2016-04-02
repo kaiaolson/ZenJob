@@ -26,13 +26,13 @@
     <% else %>
     <div id="page-content" class="flexcol">
       <div class="row flexrow">
-        <div class="col-sm-3 flexrow">
-          <div id="dash-nav" class="well flexcol">
+        <div class="col-sm-3 flexrow" >
+          <div id="dash-nav" class="flexcol well">
             <%= render "layouts/dash_nav" %>
           </div>
         </div>
         <div class="col-sm-9 flexrow">
-          <div id="dash-content" class="well flexcol">
+          <div id="dash-content" class="flexcol well">
             <%= render 'layouts/notices' %>
             <%= yield %>
           </div>
