@@ -1,14 +1,47 @@
-<h1>Conversations</h1>
-<h2>Inbox</h2>
-<div id="inbox">
-  <%= render collection: mailbox.inbox, partial: 'conversation' %>
+<div class="flexcol">
+  <div>
+    <div class="col-sm-6">
+      <h1>Conversations</h1>
+    </div>
+    <div class="col-sm-6 text-right">
+      <h1><%= link_to 'New Conversation', :new_conversation, class: "btn btn-primary" %></h1>
+    </div>
+    <ul class="nav nav-tabs" id="mailbox-nav" role="tablist">
+      <li role="presentation" class="active"><a href="#inbox" data-toggle="tab">Inbox</a></li>
+      <li role="presentation"><a href="#sent" data-toggle="tab">Sent</a></li>
+      <li role="presentation"><a href="#trash" data-toggle="tab">Trash</a></li>
+    </ul>
+  </div>
+  <div id="mailboxes" class="tab-content">
+    <div role="tabpanel" class="tab-pane fade active in" id="inbox">
+      <div class="conversation-group">
+        <table class="table table-striped table-bordered">
+          <tbody><%= render collection: mailbox.inbox, partial: 'conversation' %></tbody>
+        </table>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane fade" id="sent">
+      <div class="conversation-group">
+        <table class="table table-striped table-bordered">
+          <tbody><%= render collection: mailbox.sentbox, partial: 'conversation' %></tbody>
+        </table>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane fade" id="trash">
+      <div class="conversation-group">
+        <table class="table table-striped table-bordered">
+          <tbody><%= render collection: mailbox.trash, partial: 'conversation' %></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
-<h2>Sent</h2>
-<div id="sent">
-  <%= render collection: mailbox.sentbox, partial: 'conversation' %>
-</div>
-<h2>Trash</h2>
-<div id="trash">
-  <%= render collection: mailbox.trash, partial: 'conversation' %>
-</div>
-<%= link_to 'Start Conversation', :new_conversation, class: "btn btn-primary" %>
+
+<script>
+  $(document).ready(function(){
+    $('#mailbox-nav a').click(function (e) {
+      e.preventDefault()
+      $(this).tab('show')
+    })
+  })
+</script>

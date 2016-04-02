@@ -129,11 +129,14 @@ hr {
 
 // Chat
 .zen-message {
-  background-color: #999;
+  background-color: #DDD;
   border-radius: 10px;
   box-shadow: inset 2px 2px 2px #888;
   padding: 5px;
   margin: 5px 0px;
+}
+#mailboxes {
+  background-color: #fff;
 }
 
 footer {
