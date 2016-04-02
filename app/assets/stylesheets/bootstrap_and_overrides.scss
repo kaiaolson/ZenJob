@@ -11,6 +11,8 @@
 // And finally bootswatch style itself
 @import "bootswatch/flatly/bootswatch";
 
+$brand-warning: #FD8700;
+
 
 html {
   height: 100%;
@@ -19,6 +21,23 @@ body {
   min-height: 100vh;
   display:flex;
   flex-direction: column;
+  background-color: #305472;
+}
+a:link {
+  color: #fff;
+}
+table {
+  background-color: #A1CBCE;
+  border-color: "red";
+}
+.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+  border-color: none;
+}
+.table-bordered {
+  border-color: #A1CBCE;
+}
+.well {
+  background-color: #FFF;
 }
 ul.dropdown-menu li p {
   padding: 3px 20px;
@@ -135,8 +154,26 @@ hr {
   padding: 5px;
   margin: 5px 0px;
 }
+.conversation-group table {
+  background-color: transparent;
+  color: #fff;
+}
+
 #mailboxes {
-  background-color: #fff;
+  background-color: darken(#305472, 10);
+}
+.nav-tabs > li > a {
+  background-color: #305472;
+  color: #fff;
+}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+  background-color: darken(#305472, 10);
+  color: #fff;
+}
+.nav-tabs > li > a:hover {
+  background-color: darken(#305472, 10);
+  border-color: #305472;
+  color: #fff;
 }
 
 footer {
