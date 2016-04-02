@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :users do
     get "/change_password" => "users#change_password"
   end
-  resources :clients, only: [:new, :create, :index, :destroy]
+  resources :clients, only: [:new, :create, :index, :update, :destroy]
 
   resources :categories
   resources :info_requests do
