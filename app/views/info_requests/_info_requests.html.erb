@@ -1,3 +1,4 @@
+<h1>Requests</h1>
 <% if @info_requests.length >= 1 %>
 <div class="table-responsive">
   <table width="100%" class="table table-bordered table-striped">
@@ -16,7 +17,8 @@
       </tr>
     </thead>
 
-    <tbody>
+    <tbody
+    >
       <% @info_requests.each do |info_request| %>
         <tr>
           <td><%= info_request.id %></td>
@@ -54,5 +56,6 @@
 <% else %>
 <h3>No Requests!</h3>
 <% end %>
+
 
 <div class="text-center"><%= paginate @info_requests, theme: 'bootstrap3' %></div>

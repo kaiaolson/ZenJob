@@ -39,12 +39,20 @@ class SubmissionsController < ApplicationController
   end
 
   def index
-    if params[:filter] == "false"
-      @submissions = current_user.submissions.where(completed: "false").page params[:page]
-    elsif params[:filter] == "true"
-      @submissions = current_user.submissions.where(completed: "true").page params[:page]
-    else
-      @submissions = current_user.submissions.page params[:page]
+    respond_to do |format|
+      if params[:filter] == "false"
+        @submissions = current_user.submissions.where(completed: "false").page params[:page]
+        format.html
+        format.js { render :filter_submissions }
+      elsif params[:filter] == "true"
+        @submissions = current_user.submissions.where(completed: "true").page params[:page]
+        format.html
+        format.js { render :filter_submissions }
+      else
+        @submissions = current_user.submissions.page params[:page]
+        format.html
+        format.js { render :filter_submissions }
+      end
     end
   end
 

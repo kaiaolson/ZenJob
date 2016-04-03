@@ -1,11 +1,13 @@
 <%= content_tag_for(:tr, conversation) do |conversation| %>
   <!-- <td><%#= conversation.recipients %></td> -->
+  <td><%= current_user.sender(conversation) %></td>
   <td><%= link_to conversation.subject, conversation_path(conversation) %></td>
+  <td><%= current_user.last_message_date(conversation) %></td>
   <td class="text-center" width="5%">
     <% if conversation.is_completely_trashed?(current_user) %>
       <%= link_to 'Untrash', untrash_conversation_path(conversation), method: :post %>
     <% else %>
-      <%= link_to fa_icon("trash-o"), trash_conversation_path(conversation), method: :post %>
+      <%= link_to fa_icon("trash-o"), trash_conversation_path(conversation), method: :post, class: "trash-icon" %>
     <% end %>
   </td>
 <% end %>

@@ -1,6 +1,0 @@
-<% completed = info_request.completed %>
-<% if completed %>
-  <%= link_to raw("<i class='material-icons'>check</i>"), info_request_path(info_request, {info_request: {completed: false}}), method: :patch, remote: true %>
-<% else %>
-  <%= link_to raw("<i class='material-icons'>panorama_fish_eye</i>"), info_request_path(info_request, {info_request: {completed: true}}), method: :patch, remote: true %>
-<% end %>

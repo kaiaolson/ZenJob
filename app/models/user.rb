@@ -20,8 +20,6 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true,
             format:  /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 
-
-
   def full_name
     "#{first_name} #{last_name}".titleize
   end
@@ -35,7 +33,7 @@ class User < ActiveRecord::Base
   end
 
   def archived_clients
-    relationships.active_relationships
+    relationships.archived_relationships
     # User.includes(:relationships).where(relationships: {aasm_state: "archived", user_id: self.id})
   end
 
@@ -80,6 +78,24 @@ class User < ActiveRecord::Base
 
   def pending_submissions_count
     submissions.where(completed: false).count
+  end
+
+  def unread_messages
+    count = 0
+    mailbox.inbox.each do |c|
+      c.receipts_for(self).each do |r|
+        count += 1 if r.is_unread?
+      end
+    end
+    return count
+  end
+
+  def sender(conversation)
+    User.find(conversation.messages.first.sender_id).full_name
+  end
+
+  def last_message_date(conversation)
+    conversation.messages.last.created_at.strftime("%D")
   end
 
   def send_password_reset

@@ -13,7 +13,6 @@
 
 $brand-warning: #FD8700;
 
-
 html {
   height: 100%;
 }
@@ -26,15 +25,8 @@ body {
 a:link {
   color: #fff;
 }
-table {
-  background-color: #A1CBCE;
-  border-color: "red";
-}
-.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
-  border-color: none;
-}
-.table-bordered {
-  border-color: #A1CBCE;
+a.green-link {
+  color: $brand-success;
 }
 .well {
   background-color: #FFF;
@@ -72,6 +64,15 @@ ul.dropdown-menu li p {
 #page-content {
   margin:20px 0px;
 }
+#page-content.full-screen {
+  background-color: white;
+}
+.modal-content {
+  max-width: 500px;
+  margin:100px auto;
+}
+
+// flex cols and rows
 .flexcol {
   flex: 1;
   flex-direction: column;
@@ -130,16 +131,16 @@ hr {
 }
 
 #dash-nav {
-  li.list-group-item {
-    background: transparent;
-    border: none;
+  li.list-group-item a {
+    color: $brand-success;
+    border:none;
   }
   ul {
     list-style: none;
     padding:0;
   }
   ul li {
-    padding: 10px 0px;
+    padding: 10px;
   }
   .btn {
     width: 100%;
@@ -147,33 +148,8 @@ hr {
 }
 
 // Chat
-.zen-message {
-  background-color: #DDD;
-  border-radius: 10px;
-  box-shadow: inset 2px 2px 2px #888;
-  padding: 5px;
-  margin: 5px 0px;
-}
-.conversation-group table {
-  background-color: transparent;
-  color: #fff;
-}
-
-#mailboxes {
-  background-color: darken(#305472, 10);
-}
-.nav-tabs > li > a {
-  background-color: #305472;
-  color: #fff;
-}
-.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
-  background-color: darken(#305472, 10);
-  color: #fff;
-}
-.nav-tabs > li > a:hover {
-  background-color: darken(#305472, 10);
-  border-color: #305472;
-  color: #fff;
+a.trash-icon {
+  color: $brand-success;
 }
 
 footer {

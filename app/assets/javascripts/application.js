@@ -27,12 +27,15 @@ var playNext = function(i) {
 };
 
 $(document).ready(function(){
+  // initialize summernote
   $('[data-provider="summernote"]').each(function(){
     $(this).summernote({
       height: 300
     });
     $(this).code();
   });
+
+  // homepage fading text
   $("#homeslide li").hide();
   playNext(0);
 });

@@ -10,6 +10,10 @@ class UsersController < ApplicationController
     else
       @consultant_id = nil
     end
+    respond_to do |format|
+      format.html { render :new } #for my controller, i wanted it to be JS only
+      format.js
+    end
   end
 
   def create

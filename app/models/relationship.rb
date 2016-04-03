@@ -39,10 +39,10 @@ class Relationship < ActiveRecord::Base
   end
 
   def self.archived_relationships
-    User.includes(:relationships).where(relationships: {aasm_state: "archived"})
-    # where(aasm_state: "archived").includes(:users).where()
-    # x.map do |r|
-    #   r.client
-    # end
+    # User.includes(:relationships).where(relationships: {aasm_state: "archived"})
+    x = where(aasm_state: "archived")
+    x.map do |r|
+      r.client
+    end
   end
 end
