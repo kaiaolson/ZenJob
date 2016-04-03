@@ -1,0 +1,35 @@
+// App Navigation
+.navbar {
+  border-radius: 0;
+  margin-bottom: 0;
+}
+.navbar-default .navbar-text {
+  color: white;
+}
+ul.dropdown-menu li p {
+  padding: 3px 20px;
+  color: #7b8a8b;
+  white-space: nowrap;
+}
+
+// Dash Navigation
+#dash-nav {
+  li.list-group-item {
+    border:none;
+
+    a {
+      color: $brand-success;
+    }
+  }
+  ul {
+    list-style: none;
+    padding:0;
+
+    li {
+      padding: 10px;
+    }
+  }
+  .btn {
+    width: 100%;
+  }
+}
