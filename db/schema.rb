@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160329225052) do
+ActiveRecord::Schema.define(version: 20160404202650) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 20160329225052) do
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.integer  "relationship_id"
+    t.integer  "priority",        default: 3
   end
 
   add_index "info_requests", ["category_id"], name: "index_info_requests_on_category_id", using: :btree
