@@ -17,7 +17,7 @@
         <div class="collapse navbar-collapse" id="zenjobs_nav">
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
-              <p class="navbar-text">Welcome <%= current_user.full_name %>!</p>
+              <p class="navbar-text">Welcome <%= link_to current_user.full_name, user_path(current_user) %>!</p>
               <li><%= link_to raw("<i class='material-icons'>apps</i>"), info_requests_path %></li>
               <!-- <li><%#= link_to raw("<i class='material-icons'>notifications</i>"), info_requests_path %></li> -->
               <li class="dropdown">
@@ -25,7 +25,7 @@
                 <ul class="dropdown-menu">
                   <% if notifications? %>
                     <li><%= link_to raw("Pending Requests <span class='badge'>#{current_user.pending_requests_count}</span>"), info_requests_path({filter: "false"}) %></li>
-                    <li><%= link_to raw("Pending Submissions <span class='badge'>#{current_user.pending_submissions_count}</span>"), submissions_path({filter: "false"})  %></li>
+                    <li><%= link_to raw("Pending Submissions <span class='badge'> #{current_user.pending_submissions_count}</span>"), submissions_path({filter: "false"})  %></li>
                     <li><%= link_to raw("New Messages <span class='badge'>#{current_user.unread_messages}</span>"), conversations_path({filter: "inbox"}) %></li>
                   <% else %>
                     <li><p>No New Notifications!</p></li>

@@ -3,15 +3,24 @@
   border-radius: 0;
   margin-bottom: 0;
 }
-.navbar-default .navbar-text {
-  color: white;
+.navbar-default {
+  .navbar-text {
+    color: white;
+  }
+  .badge {
+    color: #fff;
+    background-color: $brand-primary;
+    margin:10px;
+  }
+}
+.navbar-text a:link {
+  color: #fff;
 }
 ul.dropdown-menu li p {
   padding: 3px 20px;
   color: #7b8a8b;
   white-space: nowrap;
 }
-
 // Dash Navigation
 #dash-nav {
   li.list-group-item {
