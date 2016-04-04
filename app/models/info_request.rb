@@ -30,4 +30,15 @@ class InfoRequest < ActiveRecord::Base
       "Description": description,
       "Requirements": requirements}
   end
+
+  def priority_label
+    case priority
+    when 1
+      "High"
+    when 2
+      "Medium"
+    when 3
+      "Low"
+    end
+  end
 end

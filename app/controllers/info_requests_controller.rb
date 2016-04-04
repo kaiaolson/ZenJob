@@ -44,7 +44,9 @@ class InfoRequestsController < ApplicationController
   end
 
   def show
-    render js: :create_success
+    respond_to do |format|
+      format.js {:show}
+    end
   end
 
   def edit
@@ -72,7 +74,7 @@ class InfoRequestsController < ApplicationController
   private
 
   def info_request_params
-    params.require(:info_request).permit(:title, :description, :requirements, :category_id, :completed, :relationship_id)
+    params.require(:info_request).permit(:title, :description, :requirements, :category_id, :completed, :relationship_id, :priority)
   end
 
   def find_info_request
