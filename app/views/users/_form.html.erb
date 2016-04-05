@@ -1,4 +1,4 @@
-<%= simple_form_for @user do |f| %>
+<%= simple_form_for @user, remote: true do |f| %>
   <%= f.input_field :consultant, as: :hidden, value: @consultant_id %>
   <%= f.input :first_name %>
   <%= f.input :last_name %>

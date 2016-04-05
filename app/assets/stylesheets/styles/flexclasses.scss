@@ -11,6 +11,12 @@
     flex: 1;
   }
 }
+.flexcol-prof {
+  flex-direction: column;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
 .flexcol-center {
   flex-direction: column;
   display: flex;

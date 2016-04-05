@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     end
     respond_to do |format|
       format.html { render :new } #for my controller, i wanted it to be JS only
-      format.js
+      format.js   { :new }
     end
   end
 
@@ -29,20 +29,30 @@ class UsersController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.js {:show}
+    end
   end
 
   def index
   end
 
   def edit
+    respond_to do |format|
+      format.js {:edit}
+    end
   end
 
   def update
-    if @user.update user_params
-      redirect_to user_path(@user), notice: "Profile updated successfully."
-    else
-      flash[:alert] = "Profile not updated."
-      @changing_password ? (render :change_password) : (render :edit)
+    respond_to do |format|
+      if @user.update user_params
+        format.html { redirect_to user_path(@user), notice: "Profile updated successfully."}
+        format.js   { render :update_success }
+      else
+        format.html { flash[:alert] = "Profile not updated."
+                      @changing_password ? (render :change_password) : (render :edit) }
+        format.js   { render :update_failure }
+      end
     end
   end
 
