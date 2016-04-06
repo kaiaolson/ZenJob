@@ -26,6 +26,7 @@ class InfoRequestsController < ApplicationController
   end
 
   def index
+    # TODO: Refactor this into model
     respond_to do |format|
       if params[:filter] == "false"
         @info_requests = current_user.info_requests.where(completed: "false").page(params[:page]).decorate

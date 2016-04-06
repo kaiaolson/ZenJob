@@ -5,7 +5,9 @@
   </div>
   <div class="col-sm-3 text-right flexcol-center">
     <div class="btn-group flexrow-center">
-      <% if current_user.client? %>
+      <% if current_user.client? && @info_request.submission %>
+        <%= link_to "Edit Submission", edit_info_request_submission_path(@info_request, @info_request.submission), class: "btn btn-warning btn-sm", "data-no-turbolink": true %>
+      <% elsif current_user.client? %>
         <%= link_to "Create Submission", new_info_request_submission_path(@info_request), class: "btn btn-success btn-sm" %>
       <% else %>
         <%= link_to "Edit Request", edit_info_request_path(@info_request), class: "btn btn-warning btn-sm" %>
