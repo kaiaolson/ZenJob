@@ -80,14 +80,24 @@ class User < ActiveRecord::Base
     submissions.where(completed: false).count
   end
 
-  def unread_messages
+  def unread_conversations
     count = 0
     mailbox.inbox.each do |c|
       c.receipts_for(self).each do |r|
-        count += 1 if r.is_unread?
+        if r.is_unread?
+          count += 1
+        end
       end
     end
     return count
+  end
+
+  def unread_messages(conversation)
+    conversation.receipts_for(self).each do |r|
+      if r.is_unread?
+        count += 1
+      end
+    end
   end
 
   def sender(conversation)

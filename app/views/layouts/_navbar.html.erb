@@ -26,7 +26,7 @@
                   <% if notifications? %>
                     <li><%= link_to raw("Pending Requests <span class='badge'>#{current_user.pending_requests_count}</span>"), info_requests_path({filter: "false"}) %></li>
                     <li><%= link_to raw("Pending Submissions <span class='badge'> #{current_user.pending_submissions_count}</span>"), submissions_path({filter: "false"})  %></li>
-                    <li><%= link_to raw("New Messages <span class='badge'>#{current_user.unread_messages}</span>"), conversations_path({filter: "inbox"}) %></li>
+                    <li><%= link_to raw("New Messages <span class='badge'>#{current_user.unread_conversations}</span>"), conversations_path({filter: "inbox"}) %></li>
                   <% else %>
                     <li><p>No New Notifications!</p></li>
                   <% end %>

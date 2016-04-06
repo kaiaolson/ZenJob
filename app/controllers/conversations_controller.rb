@@ -7,7 +7,7 @@ class ConversationsController < ApplicationController
     recipients = User.where(email: recipient_emails).all
 
     conversation = current_user.
-      send_message(recipients, *conversation_params(:body, :subject)).conversation.notify_all
+      send_message(recipients, *conversation_params(:body, :subject)).conversation
 
     redirect_to conversation_path(conversation)
   end

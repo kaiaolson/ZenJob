@@ -1,6 +1,6 @@
 <ul class="list-group">
   <li><%= link_to 'New Message', :new_conversation, class: "btn btn-primary" %></li>
-  <li class="list-group-item"><span class='badge'><%= current_user.unread_messages %></span><%= link_to "Inbox", conversations_path({filter: "inbox"}) %></li>
+  <li class="list-group-item"><span class='badge'><%= current_user.unread_conversations %></span><%= link_to "Inbox", conversations_path({filter: "inbox"}) %></li>
   <li class="list-group-item"><%= link_to "Sent", conversations_path({filter: "sent"}) %></li>
   <li class="list-group-item"><%= link_to "Trash", conversations_path({filter: "trash"}) %></li>
 </ul>

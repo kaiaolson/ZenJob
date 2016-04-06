@@ -1,5 +1,5 @@
 <%= simple_form_for :conversation, url: :conversations do |f| %>
-  <%= f.input :recipients %>
+  <%= f.input :recipients, hint: "Please enter recipients' emails, separated by commas." %>
   <%= f.input :subject %>
   <%= f.input :body, as: :text %>
   <div class="form-actions">
