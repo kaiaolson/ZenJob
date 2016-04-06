@@ -4,8 +4,8 @@
   <table width="100%" class="table table-bordered table-striped">
     <thead>
       <tr>
-        <th>ID</th>
         <th>Info Request</th>
+        <th class="text-center">Created</th>
         <% if current_user.client? %>
         <td>Consultant</td>
         <% else %>
@@ -19,8 +19,8 @@
     <tbody>
       <% @submissions.each do |submission| %>
         <tr>
-          <td><%= submission.id %></td>
           <td><%= submission.request_title %></td>
+          <td class="text-center"><%= submission.created_at.strftime("%D") %></td>
           <% if current_user.client? %>
           <td><%= submission.consultant %></td>
           <% else %>

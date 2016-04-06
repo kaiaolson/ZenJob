@@ -4,9 +4,9 @@
   <table width="100%" class="table table-bordered table-striped">
     <thead>
       <tr>
-        <th>ID</th>
         <th width="25%">Title</th>
         <th class="text-center">Category</th>
+        <th class="text-center">Created</th>
         <% if current_user.consultant? %>
           <th>Client</th>
         <% else %>
@@ -21,9 +21,9 @@
     >
       <% @info_requests.each do |info_request| %>
         <tr>
-          <td><%= info_request.id %></td>
           <td><%= info_request.title %></td>
           <td class="text-center"><%= info_request.category_label %></td>
+          <td class="text-center"><%= info_request.created_at.strftime("%D")%></td>
           <% if current_user.consultant? %>
           <td><%= info_request.client_name %></td>
           <td class="text-center flexrow-center btn-group">
@@ -37,7 +37,7 @@
               <% if info_request.submission %>
                 <%= link_to "View Submission", info_request_submission_path(info_request, info_request.submission), class: "btn btn-success btn-sm" %> </td>
               <% else %>
-                <%= link_to "Create Submission", new_info_request_submission_path(info_request), class: "btn btn-pink btn-sm", "data-no-turbolink": true  %> </td>
+                <%= link_to "Start Submission", new_info_request_submission_path(info_request), class: "btn btn-pink btn-sm", "data-no-turbolink": true  %> </td>
               <% end %>
           <% end %>
           <td class="text-center">
