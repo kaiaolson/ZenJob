@@ -35,6 +35,7 @@ gem "fog"
 gem "fog-aws"
 gem 'kaminari'
 gem "aasm"
+gem 'draper'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

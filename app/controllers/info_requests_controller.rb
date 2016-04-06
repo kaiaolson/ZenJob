@@ -28,15 +28,15 @@ class InfoRequestsController < ApplicationController
   def index
     respond_to do |format|
       if params[:filter] == "false"
-        @info_requests = current_user.info_requests.where(completed: "false").page params[:page]
+        @info_requests = current_user.info_requests.where(completed: "false").page(params[:page]).decorate
         format.html
         format.js   { render :filter_requests }
       elsif params[:filter] == "true"
-        @info_requests = current_user.info_requests.where(completed: "true").page params[:page]
+        @info_requests = current_user.info_requests.where(completed: "true").page(params[:page]).decorate
         format.html
         format.js   { render :filter_requests }
       else
-        @info_requests = current_user.info_requests.page params[:page]
+        @info_requests = current_user.info_requests.page(params[:page]).decorate
         format.html
         format.js   { render :filter_requests }
       end

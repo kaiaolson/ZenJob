@@ -23,7 +23,7 @@
         <tr>
           <td><%= info_request.id %></td>
           <td><%= info_request.title %></td>
-          <td class="text-center"><%= render "category", info_request: info_request %></td>
+          <td class="text-center"><%= info_request.category_label %></td>
           <% if current_user.consultant? %>
           <td><%= info_request.client_name %></td>
           <td class="text-center flexrow-center btn-group">
@@ -33,7 +33,7 @@
           <% else %>
           <td><%= info_request.creator %></td>
           <td class="text-center flexrow-center btn-group">
-            <%= link_to "View Request", info_request_path(info_request), class: "btn btn-info btn-sm" %>
+            <%= link_to "View Request", info_request_path(info_request), class: "btn btn-info btn-sm", remote: true %>
               <% if info_request.submission %>
                 <%= link_to "View Submission", info_request_submission_path(info_request, info_request.submission), class: "btn btn-success btn-sm" %> </td>
               <% else %>
@@ -59,4 +59,4 @@
 <% end %>
 
 
-<div class="text-center"><%= paginate @info_requests, theme: 'bootstrap3' %></div>
+<div class="text-center"><%#= paginate @info_requests, theme: 'bootstrap3' %></div>
