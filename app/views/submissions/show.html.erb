@@ -22,7 +22,9 @@
       <div class="panel-body">
         <% if key == :files %>
           <% @submission.files.each do |file| %>
-          <div class="submission-image"><%= image_tag file.url %></div>
+          <div class="submission-image col-sm-4 text-center">
+            <p><%= link_to "Download File", file.url, class: "btn btn-xs btn-primary", target: "_blank" %></p>
+            <%= image_tag file.url, class: "img-responsive" %></div>
           <% end %>
         <% else %>
           <%= value.html_safe %>
@@ -31,3 +33,9 @@
     </div>
   <% end %>
 <% end %>
+
+<script>
+  $(function() {
+    $('.submission-image').matchHeight();
+  });
+</script>
