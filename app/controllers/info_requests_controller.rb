@@ -29,15 +29,15 @@ class InfoRequestsController < ApplicationController
     # TODO: Refactor this into model
     respond_to do |format|
       if params[:filter] == "false"
-        @info_requests = current_user.info_requests.where(completed: "false").page(params[:page]).decorate
+        @info_requests = current_user.info_requests.where(completed: "false").page(params[:page])
         format.html
         format.js   { render :filter_requests }
       elsif params[:filter] == "true"
-        @info_requests = current_user.info_requests.where(completed: "true").page(params[:page]).decorate
+        @info_requests = current_user.info_requests.where(completed: "true").page(params[:page])
         format.html
         format.js   { render :filter_requests }
       else
-        @info_requests = current_user.info_requests.page(params[:page]).decorate
+        @info_requests = current_user.info_requests.page(params[:page])
         format.html
         format.js   { render :filter_requests }
       end
@@ -51,7 +51,10 @@ class InfoRequestsController < ApplicationController
   end
 
   def edit
-    render :js
+    respond_to do |format|
+      format.js   {:edit}
+      format.html {:edit}
+    end
   end
 
   def update

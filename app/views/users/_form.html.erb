@@ -1,15 +1,23 @@
+<% if user_signed_in? %>
 <%= simple_form_for @user, remote: true do |f| %>
   <%= f.input_field :consultant, as: :hidden, value: @consultant_id %>
   <%= f.input :first_name %>
   <%= f.input :last_name %>
   <%= f.input :role, collection: ["Client", "Consultant"], :selected => (@user.consultant? ? "Consultant" : "Client") %>
   <%= f.input :email %>
-  <% if !user_signed_in?%>
+  <%= f.submit class: "btn btn-primary" %>
+  <%= link_to "Change Password", user_change_password_path(@user), class: "btn btn-info" %>
+<% end %>
+
+<% else %>
+  <%= simple_form_for @user do |f| %>
+    <%= f.input_field :consultant, as: :hidden, value: @consultant_id %>
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.input :role, collection: ["Client", "Consultant"], :selected => (@user.consultant? ? "Consultant" : "Client") %>
+    <%= f.input :email %>
     <%= f.input :password %>
     <%= f.input :password_confirmation %>
     <%= f.submit "Create Account", class: "btn btn-primary" %>
-  <% else %>
-    <%= f.submit class: "btn btn-primary" %>
-    <%= link_to "Change Password", user_change_password_path(@user), class: "btn btn-info" %>
   <% end %>
 <% end %>

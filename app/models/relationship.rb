@@ -29,6 +29,9 @@ class Relationship < ActiveRecord::Base
     event :archive do
       transitions from: :active, to: :archived
     end
+    event :activate do
+      transitions from: :archived, to: :active
+    end
   end
 
   def self.active_relationships

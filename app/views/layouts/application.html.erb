@@ -23,7 +23,9 @@
     </div>
     <% if user_signed_in? %>
     <% if content_for? :profile %>
-      <div class="col-sm-4 col-sm-offset-4"><%= yield :profile %></div>
+      <div id="page-content" class="flexcol">
+        <div class="col-sm-4 col-sm-offset-4 well"><%= yield :profile %></div>
+      </div>
     <% elsif content_for? :messenger %>
     <div id="page-content" class="flexcol">
       <div class="row flexrow">

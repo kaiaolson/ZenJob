@@ -29,6 +29,12 @@ a:link {
 a.green-link {
   color: $brand-success;
 }
+a.text-danger {
+  color: $brand-danger;
+}
+a.text-danger:hover {
+  color: darken($brand-danger, 0.5);
+}
 
 // Wells (for dashboard)
 .well {

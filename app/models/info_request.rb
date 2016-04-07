@@ -43,4 +43,17 @@ class InfoRequest < ActiveRecord::Base
       "Low"
     end
   end
+
+  def category_label
+    case category_name
+    when "Text"
+      "Text"
+    when "Image"
+      "Image"
+    when "Login"
+      "Login"
+    when "File"
+      "File"
+    end
+  end
 end

@@ -14,11 +14,11 @@ class ClientsController < ApplicationController
         if @relationship.save
           @clients = current_user.clients
           format.html { redirect_to clients_path, notice: "Added #{@client_name} to your client list!" }
-          format.js   { :create_success }
+          format.js   { render :create_success }
         else
           format.html { flash[:error] = "Unable to add #{@client_name}, please see errors."
                         redirect_to new_client_path }
-          format.js   { :create_failure }
+          format.js   { render :create_failure }
         end
       else
         # send mailer asking to sign up
@@ -55,6 +55,5 @@ class ClientsController < ApplicationController
   end
 
   def destroy
-
   end
 end

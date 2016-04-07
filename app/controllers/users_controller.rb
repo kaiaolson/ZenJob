@@ -19,7 +19,9 @@ class UsersController < ApplicationController
   def create
     user = User.new user_params
     if user.save
-      Relationship.create(user_id: params[:user][:consultant].to_i, relation_id: user.id) if params[:user][:consultant]
+      if params[:user][:consultant]
+        Relationship.create(user_id: params[:user][:consultant].to_i, relation_id: user.id)
+      end
       log_in(user)
       redirect_to info_requests_path, notice: "Profile created successfully!"
     else
@@ -30,7 +32,8 @@ class UsersController < ApplicationController
 
   def show
     respond_to do |format|
-      format.js {:show}
+      format.js   { :show }
+      format.html { render :show }
     end
   end
 
@@ -40,6 +43,7 @@ class UsersController < ApplicationController
   def edit
     respond_to do |format|
       format.js {:edit}
+      format.html {:edit}
     end
   end
 

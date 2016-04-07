@@ -22,7 +22,7 @@
       <% @info_requests.each do |info_request| %>
         <tr>
           <td><%= info_request.title %></td>
-          <td class="text-center"><%= info_request.category_label %></td>
+          <td class="text-center"><span class="label label-<%= info_request.category_name.downcase %>"><%= info_request.category_label %></span></td>
           <td class="text-center"><%= info_request.created_at.strftime("%D")%></td>
           <% if current_user.consultant? %>
           <td><%= info_request.client_name %></td>
@@ -59,4 +59,4 @@
 <% end %>
 
 
-<div class="text-center"><%#= paginate @info_requests, theme: 'bootstrap3' %></div>
+<div class="text-center"><%= paginate @info_requests, theme: 'bootstrap3' %></div>

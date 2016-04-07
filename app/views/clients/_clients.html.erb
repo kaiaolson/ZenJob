@@ -6,7 +6,7 @@
         <th>Client</th>
         <th>Email</th>
         <th>Status</th>
-        <th>Actions</th>
+        <th class="text-center">Actions</th>
       </tr>
     </thead>
 
@@ -16,9 +16,9 @@
           <td><%= client.full_name%></td>
           <td><%= client.email %></td>
           <td><%= client.client_status(current_user) %></td>
-          <td>
+          <td class="text-center">
             <% if client.client_status(current_user) == "Active" %>
-              <%= link_to "Archive", client_path(client, {client_id: client.id}), method: :patch %>
+              <%= link_to "Archive", client_path(client, {client_id: client.id}), method: :patch, class: "btn btn-primary btn-sm" %>
             <% end %>
           </td>
         </tr>

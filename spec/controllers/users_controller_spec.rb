@@ -45,7 +45,7 @@ RSpec.describe UsersController, type: :controller do
           expect(session[:user_id]).to eq(User.last.id)
         end
         it "redirects to the submissions index page" do
-          expect(valid_request).to redirect_to(submissions_path)
+          expect(valid_request).to redirect_to(info_requests_path)
         end
         it "sets a flash notice message" do
           valid_request
