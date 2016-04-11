@@ -59,7 +59,7 @@ class User < ActiveRecord::Base
     if client?
       InfoRequest.includes(:relationship).where(relationships: {relation_id: self.id})
     else
-      InfoRequest.where(user_id: self).order(:id)
+      InfoRequest.where(user_id: self).order("created_at desc")
     end
   end
 

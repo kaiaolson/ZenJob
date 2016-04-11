@@ -1,6 +1,6 @@
 <%= content_tag_for(:tr, conversation) do |conversation| %>
   <td><%= current_user.sender(conversation) %></td>
-  <td><%= link_to conversation.subject, conversation_path(conversation) %></td>
+  <td><%= link_to conversation.subject, conversation_path(conversation), class: "green-link" %></td>
   <td><%= current_user.last_message_date(conversation) %></td>
   <td class="text-center" width="5%">
     <% if conversation.is_completely_trashed?(current_user) %>

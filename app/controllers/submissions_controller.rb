@@ -24,16 +24,6 @@ class SubmissionsController < ApplicationController
     end
   end
 
-  # def create
-  #   p params
-  #   @submission = Submission.new(images: params[:file])
-  #   if @submission.save
-  #     head :ok
-  #   else
-  #     render json: { errors: @submission.errors.full_messages }
-  #   end
-  # end
-
   def show
   end
 

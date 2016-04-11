@@ -14,7 +14,6 @@ RSpec.describe SessionsController, type: :controller do
   describe "#create" do
 
     context "with valid credentials" do
-
       context "the user is a consultant" do
         before do
           post :create, {email: consultant_user.email,
