@@ -1,0 +1,52 @@
+// Flex column and row classes
+
+.flexcol {
+  flex: 1;
+  flex-direction: column;
+  display: flex;
+  justify-content: flex-start;
+  margin: 0;
+
+  div:last-child {
+    flex: 1;
+  }
+}
+.flexcol-prof {
+  flex-direction: column;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.flexcol-center {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+
+  div:last-child {
+    flex: none;
+  }
+}
+.flexrow {
+  display: flex;
+  flex-direction: row;
+  align-content: stretch;
+}
+.flexrow-center {
+  display: flex;
+  flex-direction: row;
+
+  a {
+    flex: 1;
+  }
+}
+.well.flexcol {
+  margin-bottom:10px;
+}
+
+@media (max-width: 767px) {
+  .flexrow {
+    display: flex;
+    flex-direction: column;
+    align-content: stretch;
+  }
+}

@@ -13,6 +13,6 @@
   <% end %>
   <%= f.input :completed %>
   <%= f.input :notes %>
-  <%= link_to "View Request", info_request_path(@submission.info_request_id), class: "btn btn-info" %>
+  <%= link_to "View Request", info_request_path(@submission.info_request_id), class: "btn btn-info", remote: true %>
   <%= f.submit class: "btn btn-warning" %>
 <% end %>

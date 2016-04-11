@@ -1,14 +1,18 @@
-<h1>Conversations</h1>
-<h2>Inbox</h2>
-<div id="inbox">
-  <%= render collection: mailbox.inbox, partial: 'conversation' %>
-</div>
-<h2>Sent</h2>
-<div id="sent">
-  <%= render collection: mailbox.sentbox, partial: 'conversation' %>
-</div>
-<h2>Trash</h2>
-<div id="trash">
-  <%= render collection: mailbox.trash, partial: 'conversation' %>
-</div>
-<%= link_to 'Start Conversation', :new_conversation, class: "btn btn-primary" %>
+<% content_for :messenger do %>
+  <% if params[:filter] == 'inbox' %>
+    <h1>Inbox</h1>
+    <table class="table table-bordered">
+      <tbody><%= render collection: mailbox.inbox, partial: 'conversation' %></tbody>
+    </table>
+  <% elsif params[:filter] == 'sent' %>
+    <h1>Sent Messages</h1>
+    <table class="table table-bordered">
+      <tbody><%= render collection: mailbox.sentbox, partial: 'conversation' %></tbody>
+    </table>
+  <% else %>
+    <h1>Trash</h1>
+    <table class="table table-bordered">
+      <tbody><%= render collection: mailbox.trash, partial: 'conversation' %></tbody>
+    </table>
+  <% end %>
+<% end %>

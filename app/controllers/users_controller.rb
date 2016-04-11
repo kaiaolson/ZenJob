@@ -10,12 +10,18 @@ class UsersController < ApplicationController
     else
       @consultant_id = nil
     end
+    respond_to do |format|
+      format.html { render :new } #for my controller, i wanted it to be JS only
+      format.js   { :new }
+    end
   end
 
   def create
     user = User.new user_params
     if user.save
-      Relationship.create(user_id: params[:user][:consultant].to_i, relation_id: user.id) if params[:user][:consultant]
+      if params[:user][:consultant]
+        Relationship.create(user_id: params[:user][:consultant].to_i, relation_id: user.id)
+      end
       log_in(user)
       redirect_to info_requests_path, notice: "Profile created successfully!"
     else
@@ -25,20 +31,32 @@ class UsersController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.js   { :show }
+      format.html { render :show }
+    end
   end
 
   def index
   end
 
   def edit
+    respond_to do |format|
+      format.js {:edit}
+      format.html {:edit}
+    end
   end
 
   def update
-    if @user.update user_params
-      redirect_to user_path(@user), notice: "Profile updated successfully."
-    else
-      flash[:alert] = "Profile not updated."
-      @changing_password ? (render :change_password) : (render :edit)
+    respond_to do |format|
+      if @user.update user_params
+        format.html { redirect_to user_path(@user), notice: "Profile updated successfully."}
+        format.js   { render :update_success }
+      else
+        format.html { flash[:alert] = "Profile not updated."
+                      @changing_password ? (render :change_password) : (render :edit) }
+        format.js   { render :update_failure }
+      end
     end
   end
 

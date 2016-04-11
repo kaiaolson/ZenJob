@@ -1,11 +1,11 @@
 class InfoRequest < ActiveRecord::Base
-  has_one :submission
+  has_one :submission, dependent: :destroy
   belongs_to :category
   belongs_to :user
   belongs_to :relationship
   paginates_per 10
 
-  default_scope {order('completed ASC')}
+  # scope :scope_date, -> { order(created_at: :desc) }
 
   validates :title, presence: true
   validates :relationship_id, presence: true
@@ -31,5 +31,29 @@ class InfoRequest < ActiveRecord::Base
       "Category": category_name,
       "Description": description,
       "Requirements": requirements}
+  end
+
+  def priority_label
+    case priority
+    when 1
+      "High"
+    when 2
+      "Medium"
+    when 3
+      "Low"
+    end
+  end
+
+  def category_label
+    case category_name
+    when "Text"
+      "Text"
+    when "Image"
+      "Image"
+    when "Login"
+      "Login"
+    when "File"
+      "File"
+    end
   end
 end

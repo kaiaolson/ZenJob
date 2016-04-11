@@ -1,0 +1,8 @@
+<p><strong>First Name:</strong> <%= @user.first_name %></p>
+<p><strong>Last Name:</strong> <%= @user.last_name %></p>
+<p><strong>Email:</strong> <%= @user.email %></p>
+<br>
+<div class="row flexrow">
+  <div class="col-sm-6"><%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-warning btn-sm", remote: true  %></div>
+  <div class="col-sm-6 flexcol-prof"><%= link_to "Delete Account", user_path(@user), method: :delete, data: {confirm: "Are you sure you want to delete your account?"}, class: "text-danger" %></div>
+</div>

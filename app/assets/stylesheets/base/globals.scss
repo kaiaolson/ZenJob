@@ -1,0 +1,67 @@
+// App css
+html {
+  height: 100%;
+}
+body {
+  min-height: 100vh;
+  display:flex;
+  flex-direction: column;
+  background-color: #305472;
+}
+hr {
+  border-color: $brand-primary;
+}
+
+// Forms
+textarea, input, select {
+ max-width: 400px;
+}
+
+// To set bootstrap grid divs to no padding, add:
+.no-padding {
+  padding: 0;
+}
+
+// Links
+a:link {
+  color: #fff;
+}
+a.green-link {
+  color: $brand-success;
+}
+a.text-danger {
+  color: $brand-danger;
+}
+a.text-danger:hover {
+  color: darken($brand-danger, 0.5);
+}
+
+// Wells (for dashboard)
+.well {
+  background-color: #FFF;
+}
+
+// Page Content (wrapper div)
+#page-content {
+  margin:20px 0px;
+}
+#page-content.full-screen {
+  background-color: white;
+}
+
+// Sign Up/In Modal
+.modal-content {
+  max-width: 500px;
+  margin:100px auto;
+}
+
+// Footer styles
+footer {
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  min-height: 75px;
+  align-items: center;
+  background-color: $brand-primary;
+  color: #ffffff;
+}

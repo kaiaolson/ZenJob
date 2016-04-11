@@ -1,13 +1,13 @@
 class ConversationsController < ApplicationController
   before_filter :authenticate_user
-  helper_method :mailbox, :conversation
+  helper_method :mailbox, :conversation, :recipient_names
 
   def create
     recipient_emails = conversation_params(:recipients).split(',')
     recipients = User.where(email: recipient_emails).all
 
     conversation = current_user.
-      send_message(recipients, *conversation_params(:body, :subject)).conversation.notify_all
+      send_message(recipients, *conversation_params(:body, :subject)).conversation
 
     redirect_to conversation_path(conversation)
   end
@@ -35,6 +35,12 @@ class ConversationsController < ApplicationController
 
   def conversation
     @conversation ||= mailbox.conversations.find(params[:id])
+  end
+
+  def recipient_names(conversation)
+    conversation.recipients.map do |recipient|
+      "#{recipient.first_name} #{recipient.last_name}"
+    end.join(", ")
   end
 
   def conversation_params(*keys)

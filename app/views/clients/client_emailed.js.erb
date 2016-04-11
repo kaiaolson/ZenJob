@@ -1,0 +1,2 @@
+alert("<%= @client_name %> has been sent an email inviting them to sign up for ZenJobs!")
+$("#dash-content").hide().html("<%= j render 'clients', clients: @clients %>").fadeIn();

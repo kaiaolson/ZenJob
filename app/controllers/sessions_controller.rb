@@ -1,5 +1,9 @@
 class SessionsController < ApplicationController
   def new
+    respond_to do |format|
+      format.html { render :new } #for my controller, i wanted it to be JS only
+      format.js
+    end
   end
 
   def create

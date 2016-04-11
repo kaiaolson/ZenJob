@@ -1,7 +1,7 @@
 <%= simple_form_for :message, url: reply_conversation_path(conversation), class: "form-inline"  do |f| %>
   <%= f.input :body %>
   <div class="form-actions">
-    <%= f.submit class: 'btn btn-primary' %>
+    <%= f.submit "Send Message", class: 'btn btn-primary' %>
     <%= submit_tag 'Cancel', type: :reset, class: 'btn btn-danger' %>
   </div>
 <% end %>

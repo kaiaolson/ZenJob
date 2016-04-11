@@ -5,6 +5,8 @@
       <tr>
         <th>Client</th>
         <th>Email</th>
+        <th>Status</th>
+        <th class="text-center">Actions</th>
       </tr>
     </thead>
 
@@ -13,6 +15,12 @@
         <tr>
           <td><%= client.full_name%></td>
           <td><%= client.email %></td>
+          <td><%= client.client_status(current_user) %></td>
+          <td class="text-center">
+            <% if client.client_status(current_user) == "Active" %>
+              <%= link_to "Archive", client_path(client, {client_id: client.id}), method: :patch, class: "btn btn-primary btn-sm" %>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>
@@ -21,5 +29,3 @@
 <% else %>
 <h3>No Clients!</h3>
 <% end %>
-
-<div class="text-center"><%= paginate @clients, theme: 'bootstrap3' %></div>

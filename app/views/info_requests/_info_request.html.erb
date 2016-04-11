@@ -1,0 +1,33 @@
+<div class="row flexrow show-header">
+  <div class="col-sm-9">
+    <h1>Info Request #<%= @info_request.id %>: <%= @info_request.title %></h1>
+    <p>Priority: <%= @info_request.priority_label %></p>
+  </div>
+  <div class="col-sm-3 text-right flexcol-center">
+    <div class="btn-group flexrow-center">
+      <% if current_user.client? && @info_request.submission %>
+        <%= link_to "Edit Submission", edit_info_request_submission_path(@info_request, @info_request.submission), class: "btn btn-warning btn-sm", "data-no-turbolink": true %>
+      <% elsif current_user.client? %>
+        <%= link_to "Create Submission", new_info_request_submission_path(@info_request), class: "btn btn-success btn-sm" %>
+      <% else %>
+        <%= link_to "Edit Request", edit_info_request_path(@info_request), class: "btn btn-warning btn-sm" %>
+        <%= link_to "Delete Request", info_request_path(@info_request), method: :delete, data: {confirm: "Are you sure you want to delete this submission?"}, class: "btn btn-danger btn-sm" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="panel panel-success">
+  <div class="panel-heading">
+    <h3 class="panel-title">Additional Information</h3>
+  </div>
+  <div class="panel-body">
+    <dl class="dl-horizontal">
+      <% @info_request.content.each do |key, value| %>
+        <% if !value.empty? %>
+          <dt><%= key %></dt>
+          <dd><%= value %></dd>
+        <% end %>
+      <% end %>
+    </dl>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+// Place all the styles related to the info_requests controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.show-header {
+  margin-bottom:20px;
+  margin-top:20px;
+
+  h1 {
+    margin:0;
+  }
+}
+
+.btn-pink {
+  background-color: $brand-pink;
+}
+.btn-pink:visited {
+  color: #fff;
+}
+
+.request_text {
+
+}
+.request_file {
+
+}
+.request_login {
+
+}
+.request_image {
+
+}

@@ -10,14 +10,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <%= link_to image_tag("logo.png", height: "25px"), root_path, class: "navbar-brand"%>
+          <%= link_to image_tag("logo.png", height: "25px"), root_path, class: "navbar-brand", "data-no-turbolink": true%>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="zenjobs_nav">
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
-              <p class="navbar-text">Welcome <%= current_user.full_name %>!</p>
+              <p class="navbar-text">Welcome <%= link_to current_user.full_name, user_path(current_user), data: { toggle: "modal", target: "#ajax-modal" }, remote: true  %>!</p>
               <li><%= link_to raw("<i class='material-icons'>apps</i>"), info_requests_path %></li>
               <!-- <li><%#= link_to raw("<i class='material-icons'>notifications</i>"), info_requests_path %></li> -->
               <li class="dropdown">
@@ -25,7 +25,8 @@
                 <ul class="dropdown-menu">
                   <% if notifications? %>
                     <li><%= link_to raw("Pending Requests <span class='badge'>#{current_user.pending_requests_count}</span>"), info_requests_path({filter: "false"}) %></li>
-                    <li><%= link_to raw("Pending Submissions <span class='badge'>#{current_user.pending_submissions_count}</span>"), submissions_path({filter: "false"})  %></li>
+                    <li><%= link_to raw("Pending Submissions <span class='badge'> #{current_user.pending_submissions_count}</span>"), submissions_path({filter: "false"})  %></li>
+                    <li><%= link_to raw("New Messages <span class='badge'>#{current_user.unread_conversations}</span>"), conversations_path({filter: "inbox"}) %></li>
                   <% else %>
                     <li><p>No New Notifications!</p></li>
                   <% end %>
@@ -34,15 +35,15 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons">account_circle</i></a>
                 <ul class="dropdown-menu">
-                  <li><%= link_to "View Profile", user_path(current_user) %></li>
-                  <li><%= link_to 'My Conversations', conversations_path %></li>
+                  <li><%= link_to "View Profile", user_path(current_user), data: { toggle: "modal", target: "#ajax-modal" }, remote: true %></li>
+                  <li><%= link_to 'My Conversations', conversations_path({filter: "inbox"}) %></li>
                   <li role="separator" class="divider"></li>
                   <li><%= link_to "Log Out", sessions_path, method: :delete, data: {confirm: "Are you sure you want to log out?"} %></li>
                 </ul>
               </li>
             <% else %>
-              <li><div><%= link_to "Sign Up", new_user_path, class: "btn btn-primary navbar-btn" %></div></li>
-              <li><%= link_to "Sign In", new_session_path %></li>
+              <li><div><%= link_to "Sign Up", new_user_path, data: { toggle: "modal", target: "#ajax-modal" }, remote: true, class: "btn btn-primary navbar-btn" %></div></li>
+              <li><%= link_to "Sign In", new_session_path, data: { toggle: "modal", target: "#ajax-modal" }, remote: true %></li>
             <% end %>
           </ul>
         </div><!-- /.navbar-collapse -->

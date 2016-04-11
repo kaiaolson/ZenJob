@@ -7,6 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<%= render 'layouts/ajax_modal' %>
 <% if content_for? :home %>
   <div class="container-fluid flexcol">
     <div>
@@ -22,19 +23,37 @@
     </div>
     <% if user_signed_in? %>
     <% if content_for? :profile %>
-      <div class="col-sm-4 col-sm-offset-4"><%= yield :profile %></div>
+      <div id="page-content" class="flexcol">
+        <div class="col-sm-4 col-sm-offset-4 well"><%= yield :profile %></div>
+      </div>
+    <% elsif content_for? :messenger %>
+    <div id="page-content" class="flexcol">
+      <div class="row flexrow">
+        <div class="col-sm-3 flexrow" >
+          <div id="dash-nav" class="flexcol well">
+            <%= render "layouts/dash_nav_messenger" %>
+          </div>
+        </div>
+        <div class="col-sm-9 flexrow">
+          <div class="flexcol well">
+            <%= render 'layouts/notices' %>
+            <div id="dash-content"><%= yield :messenger %></div>
+          </div>
+        </div>
+      </div>
+    </div>
     <% else %>
     <div id="page-content" class="flexcol">
       <div class="row flexrow">
-        <div class="col-sm-3 flexrow">
-          <div id="dash-nav" class="well flexcol">
+        <div class="col-sm-3 flexrow" >
+          <div id="dash-nav" class="flexcol well">
             <%= render "layouts/dash_nav" %>
           </div>
         </div>
         <div class="col-sm-9 flexrow">
-          <div id="dash-content" class="well flexcol">
+          <div class="flexcol well">
             <%= render 'layouts/notices' %>
-            <%= yield %>
+            <div id="dash-content"><%= yield %></div>
           </div>
         </div>
       </div>

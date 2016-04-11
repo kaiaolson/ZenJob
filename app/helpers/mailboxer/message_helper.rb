@@ -1,0 +1,2 @@
+module Mailboxer::MessageHelper
+end

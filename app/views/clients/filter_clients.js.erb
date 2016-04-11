@@ -1,0 +1,7 @@
+var heading = "All Clients";
+if(<%= @filter == "active" %>) {
+  heading = "Active Clients";
+} else if(<%= @filter == "archive" %>) {
+  heading = "Archived Clients";
+}
+$("#dash-content").hide().html("<h1>" + heading + "</h1><%= j render 'clients', clients: @clients %>").fadeIn();
