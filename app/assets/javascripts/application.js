@@ -40,3 +40,9 @@ $(document).ready(function(){
   $("#homeslide li").hide();
   playNext(0);
 });
+
+// lightbox
+$(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
+  event.preventDefault();
+  $(this).ekkoLightbox();
+});
