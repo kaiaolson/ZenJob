@@ -16,6 +16,14 @@
   </div>
   <%= yield :home %>
   <%= render 'layouts/footer' %>
+<% elsif content_for? :preview %>
+  <div class="container-fluid flexcol">
+    <div>
+      <%= render 'layouts/navbar' %>
+    </div>
+    <%= yield :preview %>
+  </div>
+  <%= render 'layouts/footer' %>
 <% else %>
   <div class="container-fluid flexcol">
     <div>

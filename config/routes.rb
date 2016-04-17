@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   # custom actions for the welcome controller
   get "/home" => "welcome#home"
+  get "/preview" => "welcome#preview"
 
   resources :sessions, only: [:new, :create] do
     delete :destroy, on: :collection

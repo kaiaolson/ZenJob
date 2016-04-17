@@ -36,6 +36,7 @@ gem "fog-aws"
 gem 'kaminari'
 gem "aasm"
 gem 'draper'
+gem 'lightbox-bootstrap-rails'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

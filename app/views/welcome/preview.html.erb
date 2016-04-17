@@ -1,0 +1,19 @@
+<% content_for :preview do %>
+<div class="well preview-well">
+  <h1>Preview ZenJobs</h1>
+  <div class="screenshot col-md-3 col-sm-4 col-xs-6"><%= link_to image_tag("/system/uploads/sign_in.png", class:"img-responsive"), "/system/uploads/sign_in.png", data:{ title:'Sign In Page', footer:'footer1', toggle:'lightbox', gallery:'multiimages' }%></div>
+  <div class="screenshot col-md-3 col-sm-4 col-xs-6"><%= link_to image_tag("/system/uploads/consultant_home.png", class:"img-responsive"), "/system/uploads/consultant_home.png", data:{ title:'Consultant Dashboard', footer:'footer1', toggle:'lightbox', gallery:'multiimages' }%></div>
+  <div class="screenshot col-md-3 col-sm-4 col-xs-6"><%= link_to image_tag("/system/uploads/new_request.png", class:"img-responsive"), "/system/uploads/new_request.png", data:{ title:'New Request', footer:'footer1', toggle:'lightbox', gallery:'multiimages' }%></div>
+  <div class="screenshot col-md-3 col-sm-4 col-xs-6"><%= link_to image_tag("/system/uploads/all_clients.png", class:"img-responsive"), "/system/uploads/all_clients.png", data:{ title:'View All Clients', footer:'footer1', toggle:'lightbox', gallery:'multiimages' }%></div>
+  <div class="screenshot col-md-3 col-sm-4 col-xs-6"><%= link_to image_tag("/system/uploads/view_submissions.png", class:"img-responsive"), "/system/uploads/view_submissions.png", data:{ title:'View Submissions', footer:'footer1', toggle:'lightbox', gallery:'multiimages' }%></div>
+  <div class="screenshot col-md-3 col-sm-4 col-xs-6"><%= link_to image_tag("/system/uploads/client_requests.png", class:"img-responsive"), "/system/uploads/client_requests.png", data:{ title:'Client Dashboard', footer:'footer1', toggle:'lightbox', gallery:'multiimages' }%></div>
+  <div class="screenshot col-md-3 col-sm-4 col-xs-6"><%= link_to image_tag("/system/uploads/edit_submission.png", class:"img-responsive"), "/system/uploads/edit_submission.png", data:{ title:'Edit Submission', footer:'footer1', toggle:'lightbox', gallery:'multiimages' }%></div>
+  <div class="screenshot col-md-3 col-sm-4 col-xs-6"><%= link_to image_tag("/system/uploads/messenger.png", class:"img-responsive"), "/system/uploads/messenger.png", data:{ title:'Messenger', footer:'footer1', toggle:'lightbox', gallery:'multiimages' }%></div>
+</div>
+<% end %>
+
+<script>
+  $(function() {
+    $('.screenshot').matchHeight();
+  });
+</script>
