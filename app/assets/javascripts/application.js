@@ -39,6 +39,11 @@ $(document).ready(function(){
   // homepage fading text
   $("#homeslide li").hide();
   playNext(0);
+
+  //
+  $('.screenshot').matchHeight();
+  $('.screenshot-wrapper').matchHeight();
+  $('.submission-image').matchHeight();
 });
 
 // lightbox

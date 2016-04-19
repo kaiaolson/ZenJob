@@ -1,19 +1,67 @@
 <% content_for :preview do %>
 <div class="well preview-well">
-  <h1>Preview ZenJobs</h1>
-  <div class="screenshot col-md-3 col-sm-4 col-xs-6"><%= link_to image_tag("/system/uploads/sign_in.png", class:"img-responsive"), "/system/uploads/sign_in.png", data:{ title:'Sign In Page', footer:'footer1', toggle:'lightbox', gallery:'multiimages' }%></div>
-  <div class="screenshot col-md-3 col-sm-4 col-xs-6"><%= link_to image_tag("/system/uploads/consultant_home.png", class:"img-responsive"), "/system/uploads/consultant_home.png", data:{ title:'Consultant Dashboard', footer:'footer1', toggle:'lightbox', gallery:'multiimages' }%></div>
-  <div class="screenshot col-md-3 col-sm-4 col-xs-6"><%= link_to image_tag("/system/uploads/new_request.png", class:"img-responsive"), "/system/uploads/new_request.png", data:{ title:'New Request', footer:'footer1', toggle:'lightbox', gallery:'multiimages' }%></div>
-  <div class="screenshot col-md-3 col-sm-4 col-xs-6"><%= link_to image_tag("/system/uploads/all_clients.png", class:"img-responsive"), "/system/uploads/all_clients.png", data:{ title:'View All Clients', footer:'footer1', toggle:'lightbox', gallery:'multiimages' }%></div>
-  <div class="screenshot col-md-3 col-sm-4 col-xs-6"><%= link_to image_tag("/system/uploads/view_submissions.png", class:"img-responsive"), "/system/uploads/view_submissions.png", data:{ title:'View Submissions', footer:'footer1', toggle:'lightbox', gallery:'multiimages' }%></div>
-  <div class="screenshot col-md-3 col-sm-4 col-xs-6"><%= link_to image_tag("/system/uploads/client_requests.png", class:"img-responsive"), "/system/uploads/client_requests.png", data:{ title:'Client Dashboard', footer:'footer1', toggle:'lightbox', gallery:'multiimages' }%></div>
-  <div class="screenshot col-md-3 col-sm-4 col-xs-6"><%= link_to image_tag("/system/uploads/edit_submission.png", class:"img-responsive"), "/system/uploads/edit_submission.png", data:{ title:'Edit Submission', footer:'footer1', toggle:'lightbox', gallery:'multiimages' }%></div>
-  <div class="screenshot col-md-3 col-sm-4 col-xs-6"><%= link_to image_tag("/system/uploads/messenger.png", class:"img-responsive"), "/system/uploads/messenger.png", data:{ title:'Messenger', footer:'footer1', toggle:'lightbox', gallery:'multiimages' }%></div>
+  <h4>
+    Curious what ZenJobs is all about? Click on a screenshot to get a closer look.
+  </h4>
+  <div class="col-md-3 col-sm-4 col-xs-6 col-xxs-12 screenshot-wrapper">
+    <div class="screenshot"><%= link_to image_tag("/system/uploads/consultant_home.png", class:"img-responsive"), "/system/uploads/consultant_home.png", data:{ title:'Consultant Dashboard', toggle:'lightbox', gallery:'multiimages' }%></div>
+    <div><h3>Consultant Dashboard</h3>
+    <p>
+      Consultants can view a list of their requests, both pending and completed, create new requests, view submissions, and manage clients.
+    </p></div>
+  </div>
+  <div class="col-md-3 col-sm-4 col-xs-6 col-xxs-12 screenshot-wrapper">
+    <div class="screenshot"><%= link_to image_tag("/system/uploads/client_requests.png", class:"img-responsive"), "/system/uploads/client_requests.png", data:{ title:'Client Dashboard', toggle:'lightbox', gallery:'multiimages' }%></div>
+    <div><h3>Client Dashboard</h3>
+    <p>
+      Clients use the intuitive, streamlined interface to view pending and completed requests from their consultants.
+    </p></div>
+  </div>
+  <div class="col-md-3 col-sm-4 col-xs-6 col-xxs-12 screenshot-wrapper">
+    <div class="screenshot"><%= link_to image_tag("/system/uploads/messenger.png", class:"img-responsive"), "/system/uploads/messenger.png", data:{ title:'Messenger', toggle:'lightbox', gallery:'multiimages' }%></div>
+    <div><h3>Messenger</h3>
+    <p>
+      Clients and consultants can use the messenging system to communicate quickly and efficiently about projects.
+    </p></div>
+  </div>
+  <div class="col-md-3 col-sm-4 col-xs-6 col-xxs-12 screenshot-wrapper">
+    <div class="screenshot"><%= link_to image_tag("/system/uploads/new_request.png", class:"img-responsive"), "/system/uploads/new_request.png", data:{ title:'New Request', toggle:'lightbox', gallery:'multiimages' }%></div>
+    <div><h3>Create Request</h3>
+    <p>
+      Consultants fill out information about the request, including description, requirements for the submission (file type, for example), the category (File, Image, Text, or Login), and select which client to send the request to.
+    </p></div>
+  </div>
+
+  <div class="col-md-3 col-sm-4 col-xs-6 col-xxs-12 screenshot-wrapper">
+    <div class="screenshot"><%= link_to image_tag("/system/uploads/edit_submission.png", class:"img-responsive"), "/system/uploads/edit_submission.png", data:{ title:'Edit Submission', toggle:'lightbox', gallery:'multiimages' }%></div>
+    <div><h3>Create/Edit Submission</h3>
+    <p>
+      Clients can create a submission and check it as completed or come back later to finish.
+    </p></div>
+  </div>
+
+  <div class="col-md-3 col-sm-4 col-xs-6 col-xxs-12 screenshot-wrapper">
+    <div class="screenshot"><%= link_to image_tag("/system/uploads/view_submissions.png", class:"img-responsive"), "/system/uploads/view_submissions.png", data:{ title:'View Submissions', toggle:'lightbox', gallery:'multiimages' }%></div>
+    <div><h3>View Submissions</h3>
+    <p>
+      Consultants can see a list of submissions they have received from their clients.
+    </p></div>
+  </div>
+
+  <div class="col-md-3 col-sm-4 col-xs-6 col-xxs-12 screenshot-wrapper">
+    <div class="screenshot"><%= link_to image_tag("/system/uploads/add_client.png", class:"img-responsive"), "/system/uploads/add_client.png", data:{ title:'Sign In Page', toggle:'lightbox', gallery:'multiimages' }%></div>
+    <div><h3>Add Client</h3>
+    <p>
+      Consultants can add new clients to their dashboard. If the client does not already have an account with ZenJobs, they will receive an email inviting them to sign up.
+    </p></div>
+  </div>
+  <div class="col-md-3 col-sm-4 col-xs-6 col-xxs-12 screenshot-wrapper">
+    <div class="screenshot"><%= link_to image_tag("/system/uploads/all_clients.png", class:"img-responsive"), "/system/uploads/all_clients.png", data:{ title:'View All Clients', toggle:'lightbox', gallery:'multiimages' }%></div>
+    <div><h3>View Clients</h3>
+    <p>
+      Consultants can view a list of all of their clients and have the ability to change clients' states from active to archived.
+    </p></div>
+  </div>
+
 </div>
 <% end %>
-
-<script>
-  $(function() {
-    $('.screenshot').matchHeight();
-  });
-</script>

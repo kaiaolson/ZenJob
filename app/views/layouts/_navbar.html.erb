@@ -11,7 +11,9 @@
             <span class="icon-bar"></span>
           </button>
           <%= link_to image_tag("logo.png", height: "25px"), root_path, class: "navbar-brand", "data-no-turbolink": true%>
-          <ul class="nav navbar-nav navbar-left"><li><%= link_to "Preview", preview_path %></li></ul>
+          <% if !user_signed_in? %>
+          <ul class="nav navbar-nav navbar-left"><li><%= link_to "Take a look inside!", preview_path, "data-no-turbolink": true %></li></ul>
+          <% end %>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
