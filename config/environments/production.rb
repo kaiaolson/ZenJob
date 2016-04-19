@@ -79,5 +79,5 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { :host => "http://zenjobs.herokuapp.com" }
 
-  config.serve_static_assets = true
+  config.serve_static_files = true
 end
